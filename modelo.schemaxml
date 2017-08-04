@@ -83,7 +83,7 @@
   CONSTRAINT `FK_mpvehiculo` FOREIGN KEY (`codvia`) REFERENCES `mpcalle` (`codvia`),
   CONSTRAINT `FK_mpvehiculoestado` FOREIGN KEY (`idestado`) REFERENCES `mpestadovehiculo` (`idestado`),
   CONSTRAINT `mpvehiculo_ibfk_1` FOREIGN KEY (`iduserreg`) REFERENCES `mpuser` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mp_turno" view="standard">
 <left>274</left>
@@ -106,7 +106,7 @@
   `iduser_parqueador` int(11) DEFAULT NULL,
   `id_turno` int(11) DEFAULT NULL,
   `fecha_tarea` date DEFAULT NULL,
-  `fecreg` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecreg` datetime DEFAULT NULL,
   `userreg` varchar(50) DEFAULT NULL,
   `fecmod` datetime DEFAULT NULL,
   `usermod` varchar(50) DEFAULT NULL,
@@ -114,7 +114,9 @@
   PRIMARY KEY (`id_tareaje`),
   KEY `FK_MP_tareaje` (`iduser_parqueador`),
   KEY `FK_MP_tareaje_turno` (`id_turno`),
+  KEY `FK_MP_tareaje_cuadra` (`id_cuadras`),
   CONSTRAINT `FK_MP_tareaje` FOREIGN KEY (`iduser_parqueador`) REFERENCES `mpuser` (`iduser`),
+  CONSTRAINT `FK_MP_tareaje_cuadra` FOREIGN KEY (`id_cuadras`) REFERENCES `mp_cuadras` (`id_cuadras`),
   CONSTRAINT `FK_MP_tareaje_turno` FOREIGN KEY (`id_turno`) REFERENCES `mp_turno` (`id_turno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
 </table>
@@ -130,7 +132,7 @@
   PRIMARY KEY (`id_cuadras`),
   KEY `FK_mp_cuadras` (`id_via`),
   CONSTRAINT `FK_mp_cuadras` FOREIGN KEY (`id_via`) REFERENCES `mpcalle` (`codvia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 </tables>
 </canvas>

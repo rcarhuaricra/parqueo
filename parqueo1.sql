@@ -42,7 +42,7 @@ CREATE TABLE `mp_tareaje` (
   `iduser_parqueador` int(11) DEFAULT NULL,
   `id_turno` int(11) DEFAULT NULL,
   `fecha_tarea` date DEFAULT NULL,
-  `fecreg` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecreg` datetime DEFAULT NULL,
   `userreg` varchar(50) DEFAULT NULL,
   `fecmod` datetime DEFAULT NULL,
   `usermod` varchar(50) DEFAULT NULL,
@@ -50,7 +50,9 @@ CREATE TABLE `mp_tareaje` (
   PRIMARY KEY (`id_tareaje`),
   KEY `FK_MP_tareaje` (`iduser_parqueador`),
   KEY `FK_MP_tareaje_turno` (`id_turno`),
+  KEY `FK_MP_tareaje_cuadra` (`id_cuadras`),
   CONSTRAINT `FK_MP_tareaje` FOREIGN KEY (`iduser_parqueador`) REFERENCES `mpuser` (`iduser`),
+  CONSTRAINT `FK_MP_tareaje_cuadra` FOREIGN KEY (`id_cuadras`) REFERENCES `mp_cuadras` (`id_cuadras`),
   CONSTRAINT `FK_MP_tareaje_turno` FOREIGN KEY (`id_turno`) REFERENCES `mp_turno` (`id_turno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -159,11 +161,11 @@ CREATE TABLE `mpvehiculo` (
   CONSTRAINT `FK_mpvehiculo` FOREIGN KEY (`codvia`) REFERENCES `mpcalle` (`codvia`),
   CONSTRAINT `FK_mpvehiculoestado` FOREIGN KEY (`idestado`) REFERENCES `mpestadovehiculo` (`idestado`),
   CONSTRAINT `mpvehiculo_ibfk_1` FOREIGN KEY (`iduserreg`) REFERENCES `mpuser` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `mpvehiculo` */
 
-insert  into `mpvehiculo`(`idvehiculo`,`placa`,`codvia`,`iduserreg`,`horainicio`,`horafinal`,`idestado`,`observacion`,`hora_salida_parqueo`) values (1,'ABC-123',1,1,'2017-04-21 16:45:20','2017-04-21 18:45:20',4,NULL,NULL),(2,'321',2,1,'2017-04-28 12:45:14','2017-04-28 15:45:14',4,NULL,NULL),(3,'FGHH',1,1,'2017-05-18 12:25:46','2017-05-18 14:25:46',2,NULL,NULL),(4,'FGH-567',1,1,'2017-08-01 14:42:55','2017-08-01 16:42:55',4,NULL,NULL),(5,'321654',1,1,'2017-08-02 10:04:50','2017-08-02 12:04:50',1,NULL,NULL);
+insert  into `mpvehiculo`(`idvehiculo`,`placa`,`codvia`,`iduserreg`,`horainicio`,`horafinal`,`idestado`,`observacion`,`hora_salida_parqueo`) values (1,'ABC-123',1,1,'2017-04-21 16:45:20','2017-04-21 18:45:20',4,NULL,NULL),(2,'321',2,1,'2017-04-28 12:45:14','2017-04-28 15:45:14',4,NULL,NULL),(3,'FGHH',1,1,'2017-05-18 12:25:46','2017-05-18 14:25:46',2,NULL,NULL),(4,'FGH-567',1,1,'2017-08-01 14:42:55','2017-08-01 16:42:55',4,NULL,NULL),(5,'321654',1,1,'2017-08-02 10:04:50','2017-08-02 12:04:50',4,NULL,NULL),(6,'RTU-567',1,1,'2017-08-04 17:21:02','2017-08-04 19:21:02',3,NULL,NULL),(7,'QER-578',1,1,'2017-08-04 17:23:21','2017-08-04 19:23:21',1,NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
