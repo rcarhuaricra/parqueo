@@ -37,12 +37,12 @@ class User_model extends CI_Model {
     }
 
     public function validaPassLogin($email, $pass) {
-
-        $result = $this->db->query("SELECT * FROM mpuser WHERE email='$email' and password ='$pass'");
+        $query = "SELECT * FROM mpuser WHERE email='$email' and password ='$pass'";
+        $result = $this->db->query($query);
         if ($result->num_rows() == 0) {
-            return TRUE;
-        } else {
             return FALSE;
+        } else {
+            return TRUE;
         }
     }
 
@@ -65,7 +65,7 @@ class User_model extends CI_Model {
 
     public function tiempoVias($idVia) {
         $sql = "SELECT tiempoparqueo FROM `mpcalle` WHERE `codvia`='$idVia'";
-        $query= $this->db->query($sql);
+        $query = $this->db->query($sql);
         return $query->row();
     }
 

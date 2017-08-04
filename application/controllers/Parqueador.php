@@ -7,7 +7,7 @@ class Parqueador extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->helper('date');
-
+        $this->load->library('user_agent');
         if (!$this->session->userdata('login')) {
             //redirect("usuario");
             header("Location:" . base_url() . "login");
@@ -20,14 +20,14 @@ class Parqueador extends CI_Controller {
     }
 
     public function estacionados() {
+
         $data = array('titulo' => 'Panel de Control');
         $this->load->view('plantilla/header', $data);
         $id = $this->session->userdata('login');
         $datos['usuario'] = $this->user_model->datosUser($id);
         $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => '', 'estacionado' => 'active', 'deposito' => '', 'culminado' => '');
+        $menu = array('nuevo' => '', 'estacionado' => 'active', 'deposito' => '', 'culminado' => '', 'tareaje'=>'');
         $this->load->view('plantilla/menuizquierda', $menu);
-      
         $data['vehiculos'] = $this->parqueo_model->vehiculosParqueados();
         $this->load->view('vehiculos/estacionados', $data);
         $this->load->view('plantilla/piedePagina');
@@ -42,7 +42,7 @@ class Parqueador extends CI_Controller {
         $id = $this->session->userdata('login');
         $datos['usuario'] = $this->user_model->datosUser($id);
         $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => 'active', 'culminado' => '');
+        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => 'active', 'culminado' => '', 'tareaje'=>'');
         $this->load->view('plantilla/menuizquierda', $menu);
         $data['vehiculos'] = $this->parqueo_model->vehiculosDeposito();
         $this->load->view('vehiculos/deposito', $data);
@@ -58,7 +58,7 @@ class Parqueador extends CI_Controller {
         $id = $this->session->userdata('login');
         $datos['usuario'] = $this->user_model->datosUser($id);
         $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => 'active');
+        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => 'active', 'tareaje'=>'');
         $this->load->view('plantilla/menuizquierda', $menu);
         $data['vehiculos'] = $this->parqueo_model->vehiculosCulminados();
         $this->load->view('vehiculos/culminado', $data);
@@ -74,7 +74,7 @@ class Parqueador extends CI_Controller {
         $datos['usuario'] = $this->user_model->datosUser($id);
         $datos['via'] = $this->user_model->datosVias();
         $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => 'active', 'estacionado' => '', 'deposito' => '', 'culminado' => '');
+        $menu = array('nuevo' => 'active', 'estacionado' => '', 'deposito' => '', 'culminado' => '', 'tareaje'=>'');
         $this->load->view('plantilla/menuizquierda', $menu);
         $this->load->view('vehiculos/nuevo', $datos);
         $this->load->view('plantilla/footer');
@@ -103,7 +103,7 @@ class Parqueador extends CI_Controller {
             'horafinal' => $fechaFinal
         ];
         $nuevoId = $this->parqueo_model->guardarNuevoParqueo($data);
-        
+
         redirect("parqueador/imprimir/$nuevoId");
 
         //redirect("PaquetesController");
@@ -115,12 +115,11 @@ class Parqueador extends CI_Controller {
         $iduser = $this->session->userdata('login');
         $dato['ticket'] = $this->parqueo_model->generarticket($nuevoId, $iduser);
         //echo $dato['ticket'];
-        if($dato['ticket']==false){
+        if ($dato['ticket'] == false) {
             header("Location:" . base_url() . "parqueador/estacionados");
-        }else{
+        } else {
             $this->load->view('vehiculos/impresion', $dato);
         }
-        
     }
 
     public function anulado() {

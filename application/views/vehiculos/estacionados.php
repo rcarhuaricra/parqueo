@@ -5,23 +5,19 @@
             Velículos 
             <small>Estacionados</small>
         </h1>
-
     </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-
                 <div class="box">
                     <div class="box-header">
-
                         <h3 class="box-title">
-                            <?php
-                            
-                            ?>
-                            Vehículos estacionados el dia de hoy</h3>
-                            <h3 class="box-title"><?php  echo HORA_ACTUAL; ?></h3>
+                            Vehículos estacionados el dia de hoy
+                        </h3>
+                        <h3 class="box-title pull-right"> 
+                            <strong><?php echo HORA_ACTUAL; ?></strong>
+                        </h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">

@@ -10,8 +10,11 @@
             <?php
             foreach ($usuario->result() as $fila1) {
                 ?>
-                <div class="pull-left image">
-                    <img src="<?php echo base_url(); ?>recursos/dist/img/user.jpg" class="img-circle" alt="User Image">
+                <div class="pull-left ">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x text-red "></i>
+                        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                    </span>
                 </div>
                 <div class="pull-left info">
                     <p>
@@ -22,10 +25,10 @@
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             <?php } ?>
-            
+
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        
+
         <ul class="sidebar-menu">
             <li>
                 <a>
@@ -58,9 +61,17 @@
                     </span>
                 </a>
             </li>
-             <li class="<?php echo $culminado; ?>">
+            <li class="<?php echo $culminado; ?>">
                 <a href="<?php echo base_url(); ?>parqueador/culminados">
                     <i class="fa fa-circle-o text-yellow"></i> <span>culminados</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-black"></small>
+                    </span>
+                </a>
+            </li>
+            <li class="<?php echo $tareaje; ?>">
+                <a href="<?php echo base_url(); ?>tareaje">
+                    <i class="fa fa-circle-o text-purple"></i> <span>Tareaje</span>
                     <span class="pull-right-container">
                         <small class="label pull-right bg-black"></small>
                     </span>

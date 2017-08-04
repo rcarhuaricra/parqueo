@@ -83,7 +83,7 @@
 
 <script>
     function imprimir() {
-       //window.print();
+       window.print();
        //top.location = "<?php echo base_url(); ?>"
     }
 </script>

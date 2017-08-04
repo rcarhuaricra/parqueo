@@ -4,6 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+        // Your own constructor code       
+        $this->load->library('form_validation');
+    }
+
     public function index() {
         if ($this->session->userdata('login')) {
             header("Location:" . base_url() . "parqueador");
@@ -31,39 +37,40 @@ class Login extends CI_Controller {
         }
     }
 
-    public function verificarEmailRegistro($email) {
-        $this->load->model('user_model');
-        if ($this->user_model->validaEmail($email)) {
-            $this->form_validation->set_message('verificarEmailRegistro', "el correo $email ya se encuentra registrado");
+    public function verificarEmailLogin() {
+        $email = strtoupper($this->input->post('email'));
+        if ($email == '') {
+            $this->form_validation->set_message('verificarEmailLogin', "el Campo <strong>{field}</strong> es Necesario");
             return FALSE;
         } else {
-            return TRUE;
+            if ($this->user_model->validaEmailLogin($email)) {
+                $this->form_validation->set_message('verificarEmailLogin', "el correo <strong> $email</strong> no se encuentra registrado");
+                return FALSE;
+            } else {
+                return TRUE;
+            }
         }
     }
 
-    public function verificarEmailLogin($email) {
-        if ($this->user_model->validaEmailLogin($email)) {
-            $this->form_validation->set_message('verificarEmailLogin', "el correo $email no se encuentra registrado");
+    public function verificarPassLoging() {
+        $email = strtoupper($this->input->post('email'));
+        $pass = strtoupper($this->input->post('psw'));
+        if ($pass == '') {
+            $this->form_validation->set_message('verificarPassLoging', "el Campo <strong>{field}</strong> es Necesario");
             return FALSE;
         } else {
-
-            return TRUE;
-        }
-    }
-
-    public function verificarPassLoging($email, $pass) {
-        if ($this->user_model->validaPassLogin($email, $pass)) {
-
-            return TRUE;
-        } else {
-            $this->form_validation->set_message('verificarPassLoging', "el Password no es Correcto");
-            return TRUE;
+            if ($this->user_model->validaPassLogin($email, $pass) == TRUE) {
+                return TRUE;
+            } else {
+                $this->form_validation->set_message('verificarPassLoging', "el Password <strong>es incorecto</strong> no coincide con el Correo");
+                return FALSE;
+            }
         }
     }
 
     public function logout() {
         $this->session->sess_destroy();
-        header("location:" . base_url() . 'login');
+        header("location:" . base_url());
     }
 
 }

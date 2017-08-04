@@ -85,5 +85,6 @@ defined('EXIT_DATABASE') OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN') OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 date_default_timezone_set("America/Lima");
+
 define('DIA_DE_HOY',strftime('%Y-%m-%d'));
 define('HORA_ACTUAL',strftime('%Y-%m-%d %H:%M:%S'));

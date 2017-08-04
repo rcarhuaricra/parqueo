@@ -23,7 +23,9 @@
                     }
                     ?>
                 </select>
-
+            </div>
+            <div class="form-group has-feedback">
+                <input type="file">
             </div>
 
             <div class="form-group">                   
