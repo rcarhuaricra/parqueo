@@ -1,6 +1,6 @@
 <body class="hold-transition skin-green sidebar-mini">
 
-    <div class="">
+    <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
             <a href="<?php echo base_url(); ?>" class="logo">

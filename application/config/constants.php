@@ -86,5 +86,6 @@ defined('EXIT__AUTO_MIN') OR define('EXIT__AUTO_MIN', 9); // lowest automaticall
 defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 date_default_timezone_set("America/Lima");
 
+define('AÑO_ACTUAL',strftime('%Y'));
 define('DIA_DE_HOY',strftime('%Y-%m-%d'));
 define('HORA_ACTUAL',strftime('%Y-%m-%d %H:%M:%S'));
