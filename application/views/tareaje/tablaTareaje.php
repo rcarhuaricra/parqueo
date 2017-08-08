@@ -1,8 +1,7 @@
 <?php
 $mes = $mesTurno['mes'];
-$número = cal_days_in_month(CAL_GREGORIAN, $mes, AÑO_ACTUAL); // 31
-echo "Hubo {$número} días en " . $meses[$mes] . " del " . AÑO_ACTUAL;
-$timeout = time() - 900; # 15 minutos
+$numero = cal_days_in_month(CAL_GREGORIAN, $mes, AÑO_ACTUAL); // 31
+echo "Hubo {$numero} días en " . $meses[$mes] . " del " . AÑO_ACTUAL;
 ?>
 <form id="guardarTareaje">
 
@@ -29,7 +28,7 @@ $timeout = time() - 900; # 15 minutos
                 echo "<td><input type='hidden' name='cuadra[]' value='$value->id_cuadras'>" . $value->cuadra . "</td>";
                 echo "<td>";
                 ?>
-        <select  name="usuario[]" id="usuario" style="min-width: 250px" required="">
+            <select  name="usuario[]" id="usuario" style="min-width: 250px" required="">
                 <option value="">[selecciones Usuario]</option>
                 <?php
                 foreach ($usuarios as $usuario) {
@@ -53,20 +52,26 @@ $timeout = time() - 900; # 15 minutos
         $("select").select2();
     });
     $('#guardarTareaje').bind('submit', function () {
-
-        
         event.preventDefault();
         $.ajax({
             type: 'post',
             url: '<?php echo base_url(); ?>tareaje/guardarTareaje',
             data: $('#guardarTareaje').serialize(),
             success: function (response) {
-                console.log(response);
+
+                if (response > 0) {
+                    swal({text: "Se Agrego Correctamente",
+                        timer: 2000,
+                        showConfirmButton: false});
+                    console.log(response);
+                    console.log('ingreso todo');
+                } else {
+                    console.log(response);
+                    console.log('no ingreso nada');
+                }
                 /*$("#modalCofirmacion").modal({backdrop: "static", keyboard: false});
                  $("#contenidoCofirmacion").html(response);*/
             }
         });
-
-
     });
 </script>

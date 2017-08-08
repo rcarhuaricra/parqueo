@@ -88,4 +88,7 @@ date_default_timezone_set("America/Lima");
 
 define('AÑO_ACTUAL',strftime('%Y'));
 define('DIA_DE_HOY',strftime('%Y-%m-%d'));
+define('MES_ACTUAL',strftime('%m'));
 define('HORA_ACTUAL',strftime('%Y-%m-%d %H:%M:%S'));
+global $meses;
+$meses = array("[Seleccione Mes]", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre");
