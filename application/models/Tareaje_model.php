@@ -38,5 +38,13 @@ class Tareaje_model extends CI_Model {
     public function guardarTareajeMasivo($insertTareaje) {
         return $this->db->insert_batch('mp_tareaje', $insertTareaje);
     }
+    
+    public function tablaEditarTareaje($fecha, $calle){
+        $sql = "SELECT * FROM `mpuser` U 
+                INNER JOIN mproles R ON U.IDROL =R.IDROL
+                WHERE R.txtrol='PARQUEADOR'";
+        $consulta = $this->db->query($sql);
+        return $consulta->result();
+    }
 
 }

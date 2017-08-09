@@ -97,10 +97,20 @@ class Tareaje extends CI_Controller {
         $this->load->view('plantilla/cabecera', $datos);
         $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => '', 'tareaje' => 'active');
         $this->load->view('plantilla/menuizquierda', $menu);
+        $this->load->model('generales_model');
+        $datos['calles']=$this->generales_model->listarCalles();
+        $datos['Buscaturno'] = $this->Tareaje_model->Buscaturno();
         $this->load->view('tareaje/editarTareaje', $datos);
         $this->load->view('plantilla/piedePagina');
         //$this->load->view('plantilla/menuderecha');
         $this->load->view('plantilla/footer');
+    }
+
+    public function tablaTareajeEdicion() {
+        $fecha = $this->input->post('txtFecha');
+        $calle= $this->input->post('calle');
+        $data['Tareaje Edicion']=$this->Tareaje_model->tablaEditarTareaje($fecha, $calle);
+        
     }
 
 }

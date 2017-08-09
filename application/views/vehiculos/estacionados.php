@@ -124,7 +124,6 @@
             title: titulo,
             text: texto,
             html: true,
-            
             showCancelButton: true,
             confirmButtonColor: color,
             confirmButtonText: "Si, Confirmar!",
@@ -143,7 +142,7 @@
                             swal({
                                 title: tituloConfir,
                                 text: "el registro con placa <strong>" + placa + "</strong> ha sido " + tituloConfir,
-                                html: true,                               
+                                html: true,
                                 timer: 2000
                             });
                             //alert("aaaa");
@@ -156,7 +155,7 @@
                                 title: textStatus,
                                 text: "el registro con placa <strong>" + placa + "</strong> no ha sido anulado",
                                 html: true
-                                
+
                             });
                             //$("#" + response).html("");
                         });

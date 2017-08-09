@@ -28,7 +28,7 @@ echo "Hubo {$numero} días en " . $meses[$mes] . " del " . AÑO_ACTUAL;
                 echo "<td><input type='hidden' name='cuadra[]' value='$value->id_cuadras'>" . $value->cuadra . "</td>";
                 echo "<td>";
                 ?>
-            <select  name="usuario[]" id="usuario" style="min-width: 250px" required="">
+            <select  name="usuario[]" id="usuario" class="form-control select" style="min-width: 250px" required="">
                 <option value="">[selecciones Usuario]</option>
                 <?php
                 foreach ($usuarios as $usuario) {
@@ -48,9 +48,7 @@ echo "Hubo {$numero} días en " . $meses[$mes] . " del " . AÑO_ACTUAL;
     </div>
 </form>
 <script>
-    $(document).ready(function () {
-        $("select").select2();
-    });
+
     $('#guardarTareaje').bind('submit', function () {
         event.preventDefault();
         $.ajax({

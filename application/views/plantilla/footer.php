@@ -19,8 +19,7 @@
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>recursos/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="<?php echo base_url(); ?>recursos/plugins/datepicker/bootstrap-datepicker.js"></script>
+
 <!-- DataTables -->
 <script src="<?php echo base_url(); ?>recursos/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>recursos/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js" type="text/javascript"></script>
@@ -33,6 +32,9 @@
 <script src="<?php echo base_url(); ?>recursos/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url(); ?>recursos/plugins/fastclick/fastclick.js"></script>
+<!-- datepicker -->
+<script src="<?php echo base_url(); ?>recursos/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url(); ?>recursos/plugins/datepicker/locales/bootstrap-datepicker.es.js" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>recursos/dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) 
@@ -40,7 +42,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>recursos/dist/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>recursos/dist/js/script.js" type="text/javascript"></script>
-
+<script src="<?php echo base_url(); ?>recursos/recursosmsi/script.js" type="text/javascript"></script>
 
 </body>
 </html>
