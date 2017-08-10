@@ -1,5 +1,4 @@
-<script src="<?php echo base_url() ?>recursos/plugins/bootstrap-fileinput-master/js/fileinput.min.js" type="text/javascript"></script>
-<link href="<?php echo base_url() ?>recursos/plugins/bootstrap-fileinput-master/css/fileinput.min.css" rel="stylesheet" type="text/css"/>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -16,6 +15,9 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Ingresar los datos indicados en el formulario</h3>
+                        <?php
+                        echo $_SESSION['idtareaje']
+                        ?>
                     </div>
                     <div class=" box-body">
                         <!-- /.box-header -->

@@ -59,11 +59,29 @@ class Login extends CI_Controller {
             $this->form_validation->set_message('verificarPassLoging', "el Campo <strong>{field}</strong> es Necesario");
             return FALSE;
         } else {
-            if ($this->user_model->validaPassLogin($email, $pass) == TRUE) {
+            $login = $this->user_model->validaPassLogin($email, $pass);
+            if ($login == TRUE) {
                 return TRUE;
-            } else {
-                $this->form_validation->set_message('verificarPassLoging', "el Password <strong>es incorecto</strong> no coincide con el Correo");
+            }
+            $this->form_validation->set_message('verificarPassLoging', "el Password <strong>es incorecto</strong> no coincide con el Correo");
+            return FALSE;
+        }
+    }
+
+    public function verificarTareaje() {
+        $email = strtoupper($this->input->post('email'));
+        $pass = strtoupper($this->input->post('psw'));
+        $rol = $this->user_model->validaRol($email, $pass);
+
+        if ($rol == ADMINISTRADOR) {
+            return TRUE;
+        } else {
+            $result = $this->user_model->validaHorario($email, $pass);
+            if ($result == FALSE) {
+                $this->form_validation->set_message('verificarTareaje', "El Usuario no tiene Acceso Ens estos Momentos");
                 return FALSE;
+            } else {
+                return TRUE;               
             }
         }
     }

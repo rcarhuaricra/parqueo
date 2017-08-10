@@ -51,7 +51,7 @@
 
                                 <li class="user-footer">                                      
                                     <div class="pull-right">
-                                        <a href="<?php echo base_url(); ?>/login/logout" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                                        <a href="<?php echo base_url(); ?>login/logout" class="btn btn-default btn-flat">Cerrar Sesión</a>
                                     </div>
                                 </li>
                             </ul>

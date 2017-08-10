@@ -84,9 +84,16 @@ defined('EXIT_USER_INPUT') OR define('EXIT_USER_INPUT', 7); // invalid user inpu
 defined('EXIT_DATABASE') OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN') OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+define(ADMINISTRADOR, '1');
+define(PARQUEADOR, '2');
+
 date_default_timezone_set("America/Lima");
 
 define('AÑO_ACTUAL',strftime('%Y'));
 define('DIA_DE_HOY',strftime('%Y-%m-%d'));
 define('MES_ACTUAL',strftime('%m'));
-define('HORA_ACTUAL',strftime('%Y-%m-%d %H:%M:%S'));
+define('FECHA_HORA_ACTUAL',strftime('%Y-%m-%d %H:%M:%S'));
+
+define('HORA_ACTUAL',strftime('%H:%M:%S'));

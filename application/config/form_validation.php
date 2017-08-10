@@ -11,6 +11,11 @@ $config = array(
             'field' => 'psw',
             'label' => 'Password',
             'rules' => 'callback_verificarPassLoging'
+        ),
+        array(
+            'field' => 'acceso',
+            'label' => 'acceso',
+            'rules' => 'callback_verificarTareaje'
         )
     )
 );

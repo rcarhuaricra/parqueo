@@ -2,6 +2,8 @@
     <div class="login-box">
         <div class="login-logo">
             <a href="<?php echo base_url(); ?>"><b>Sistema de </b>Parqueo</a>
+            <?php echo DIA_DE_HOY  ; ?>
+            
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -25,6 +27,7 @@
                     </div>
                     <?php echo form_error('psw'); ?>
                 </div>
+                <?php echo form_error('acceso'); ?>
                 <div class="form-group has-feedback">
                     <button type="submit" class="btn btn-success btn-block btn-flat"><span class="fa fa-sign-in"></span> Ingresar</button>
                     <!-- /.col -->

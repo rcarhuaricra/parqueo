@@ -6,8 +6,8 @@
 <canvas zoom="100">
 <tables>
 <table name="mpcalle" view="standard">
-<left>0</left>
-<top>0</top>
+<left>4</left>
+<top>389</top>
 <width>230</width>
 <height>158</height>
 <sql_create_table>CREATE TABLE `mpcalle` (
@@ -20,7 +20,7 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mpestadovehiculo" view="standard">
-<left>1066</left>
+<left>1388</left>
 <top>107</top>
 <width>197</width>
 <height>107</height>
@@ -28,11 +28,11 @@
   `idestado` int(5) NOT NULL AUTO_INCREMENT,
   `txtestado` varchar(35) DEFAULT NULL,
   PRIMARY KEY (`idestado`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mproles" view="standard">
-<left>36</left>
-<top>449</top>
+<left>12</left>
+<top>145</top>
 <width>174</width>
 <height>107</height>
 <sql_create_table>CREATE TABLE `mproles` (
@@ -42,8 +42,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mpuser" view="standard">
-<left>275</left>
-<top>325</top>
+<left>295</left>
+<top>10</top>
 <width>226</width>
 <height>226</height>
 <sql_create_table>CREATE TABLE `mpuser` (
@@ -59,46 +59,46 @@
   PRIMARY KEY (`iduser`),
   KEY `idrol` (`idrol`),
   CONSTRAINT `mpuser_ibfk_1` FOREIGN KEY (`idrol`) REFERENCES `mproles` (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mpvehiculo" view="standard">
-<left>750</left>
-<top>33</top>
+<left>1005</left>
+<top>77</top>
 <width>271</width>
 <height>226</height>
 <sql_create_table>CREATE TABLE `mpvehiculo` (
   `idvehiculo` int(5) NOT NULL AUTO_INCREMENT,
-  `placa` varchar(15) DEFAULT NULL,
-  `codvia` int(5) DEFAULT NULL,
+  `placa` varchar(8) DEFAULT NULL,
+  `id_tareaje` varchar(25) DEFAULT NULL,
   `iduserreg` int(5) DEFAULT NULL,
-  `horainicio` datetime DEFAULT NULL,
+  `horainicio` datetime DEFAULT CURRENT_TIMESTAMP,
   `horafinal` datetime DEFAULT NULL,
   `idestado` int(5) DEFAULT '1',
   `observacion` varchar(200) DEFAULT NULL,
   `hora_salida_parqueo` datetime DEFAULT NULL,
   PRIMARY KEY (`idvehiculo`),
   KEY `iduser` (`iduserreg`),
-  KEY `FK_mpvehiculo` (`codvia`),
+  KEY `FK_mpvehiculo` (`id_tareaje`),
   KEY `FK_mpvehiculoestado` (`idestado`),
-  CONSTRAINT `FK_mpvehiculo` FOREIGN KEY (`codvia`) REFERENCES `mpcalle` (`codvia`),
-  CONSTRAINT `FK_mpvehiculoestado` FOREIGN KEY (`idestado`) REFERENCES `mpestadovehiculo` (`idestado`),
-  CONSTRAINT `mpvehiculo_ibfk_1` FOREIGN KEY (`iduserreg`) REFERENCES `mpuser` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8</sql_create_table>
+  CONSTRAINT `FK_mpvehiculoestado` FOREIGN KEY (`idestado`) REFERENCES `mpestadovehiculo` (`idestado`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mp_turno" view="standard">
-<left>274</left>
-<top>571</top>
+<left>295</left>
+<top>249</top>
 <width>196</width>
 <height>107</height>
 <sql_create_table>CREATE TABLE `mp_turno` (
   `id_turno` int(11) NOT NULL AUTO_INCREMENT,
   `txt_turno` varchar(50) DEFAULT NULL,
+  `hora_ingreso` time DEFAULT NULL,
+  `hora_fin` time DEFAULT NULL,
   PRIMARY KEY (`id_turno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="MP_tareaje" view="standard">
-<left>764</left>
-<top>347</top>
+<left>605</left>
+<top>124</top>
 <width>252</width>
 <height>251</height>
 <sql_create_table>CREATE TABLE `mp_tareaje` (
@@ -106,7 +106,7 @@
   `iduser_parqueador` int(11) DEFAULT NULL,
   `id_turno` int(11) DEFAULT NULL,
   `fecha_tarea` date DEFAULT NULL,
-  `fecreg` datetime DEFAULT NULL,
+  `fecreg` datetime DEFAULT CURRENT_TIMESTAMP,
   `userreg` varchar(50) DEFAULT NULL,
   `fecmod` datetime DEFAULT NULL,
   `usermod` varchar(50) DEFAULT NULL,
@@ -121,8 +121,8 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mp_cuadras" view="standard">
-<left>384</left>
-<top>141</top>
+<left>295</left>
+<top>374</top>
 <width>176</width>
 <height>124</height>
 <sql_create_table>CREATE TABLE `mp_cuadras` (

@@ -7,22 +7,40 @@ class User_model extends CI_Model {
                 INNER JOIN `mproles` R ON U.`idrol` = R.`idrol`
                 WHERE email = '$email' AND PASSWORD ='$pass'";
         $consulta = $this->db->query($sql);
-        if ($consulta->num_rows() > 0) {
-            $consulta = $consulta->row();
+        $row = $consulta->row();
+        if ($row->idrol == ADMINISTRADOR) {
             $data = array(
                 'login' => TRUE,
-                'iduser' => $consulta->iduser,
-                'nombre' => $consulta->user_name . " " . $consulta->user_ape_pat . " " . $consulta->user_ape_mat,
-                'email' => $consulta->email,
-                'idrol' => $consulta->idrol,
-                'txtrol' => $consulta->txtrol
+                'iduser' => $row->iduser,
+                'nombre' => $row->user_name . " " . $consulta->user_ape_pat . " " . $consulta->user_ape_mat,
+                'email' => $row->email,
+                'idrol' => $row->idrol,
+                'txtrol' => $row->txtrol
             );
             $this->session->set_userdata($data);
-        } else {
-            //return FALSE;
-            //$this->form_validation->set_message('verificarPassLoging', "el Password no es Correcto");
-            $this->session->set_flashdata('mensaje', 'La Contraseña no es correcta');
+        } elseif ($row->idrol == PARQUEADOR) {
+            $sql1 = "SELECT * FROM `mp_tareaje` TA
+                    INNER JOIN `mpuser` U ON  TA.`iduser_parqueador`=U.`iduser`
+                    INNER JOIN `mp_turno` TU ON TU.`id_turno`=TA.`id_turno`
+                    WHERE U.`email`='$email' 
+                    AND U.`password`='$pass'
+                    AND TA.`fecha_tarea`='" . DIA_DE_HOY . "'
+                    AND TU.`hora_ingreso`<'" . HORA_ACTUAL . "'
+                    AND TU.`hora_fin`>'" . HORA_ACTUAL . "'";
+            $row = $this->db->query($sql1);
+            $consulta1 = $row->row();
+            $data = array(
+                'login' => TRUE,
+                'iduser' => $consulta1->iduser,
+                'nombre' => $consulta1->user_name . " " . $consulta1->user_ape_pat . " " . $consulta1->user_ape_mat,
+                'email' => $consulta1->email,
+                'idrol' => $consulta1->idrol,
+                'txtrol' => $consulta1->txtrol,
+                'idtareaje' => $consulta1->id_tareaje
+            );
+            $this->session->set_userdata($data);
         }
+        
     }
 
     public function validaEmail($email) {
@@ -43,6 +61,12 @@ class User_model extends CI_Model {
         }
     }
 
+    public function validaRol($email, $pass) {
+        $query = "SELECT * FROM mpuser WHERE email='$email' and password ='$pass'";
+        $result = $this->db->query($query);
+        return $result->row()->idrol;
+    }
+
     public function validaPassLogin($email, $pass) {
         $query = "SELECT * FROM mpuser WHERE email='$email' and password ='$pass'";
         $result = $this->db->query($query);
@@ -50,6 +74,23 @@ class User_model extends CI_Model {
             return FALSE;
         } else {
             return TRUE;
+        }
+    }
+
+    public function validaHorario($email, $pass) {
+        $query = "SELECT * FROM `mp_tareaje` TA
+                INNER JOIN `mpuser` U ON  TA.`iduser_parqueador`=U.`iduser`
+                INNER JOIN `mp_turno` TU ON TU.`id_turno`=TA.`id_turno`
+                WHERE U.`email`='$email' 
+                AND U.`password`='$pass'
+                AND TA.`fecha_tarea`='" . DIA_DE_HOY . "'
+                AND TU.`hora_ingreso`<'" . HORA_ACTUAL . "'
+                AND TU.`hora_fin`>'" . HORA_ACTUAL . "'";
+        $result = $this->db->query($query);
+        if ($result->num_rows() == 0) {
+            return FALSE;
+        } else {
+            return $result;
         }
     }
 
