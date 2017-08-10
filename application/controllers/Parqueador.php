@@ -24,9 +24,8 @@ class Parqueador extends CI_Controller {
         $data = array('titulo' => 'Panel de Control');
         $this->load->view('plantilla/header', $data);
         $id = $this->session->userdata('login');
-        $datos['usuario'] = $this->user_model->datosUser($id);
-        $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => '', 'estacionado' => 'active', 'deposito' => '', 'culminado' => '', 'tareaje'=>'');
+        $this->load->view('plantilla/cabecera');
+        $menu = array('nuevo' => '', 'estacionado' => 'active', 'deposito' => '', 'culminado' => '', 'tareaje' => '');
         $this->load->view('plantilla/menuizquierda', $menu);
         $data['vehiculos'] = $this->parqueo_model->vehiculosParqueados();
         $this->load->view('vehiculos/estacionados', $data);
@@ -40,9 +39,8 @@ class Parqueador extends CI_Controller {
         $data = array('titulo' => 'Panel de Control');
         $this->load->view('plantilla/header', $data);
         $id = $this->session->userdata('login');
-        $datos['usuario'] = $this->user_model->datosUser($id);
-        $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => 'active', 'culminado' => '', 'tareaje'=>'');
+        $this->load->view('plantilla/cabecera');
+        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => 'active', 'culminado' => '', 'tareaje' => '');
         $this->load->view('plantilla/menuizquierda', $menu);
         $data['vehiculos'] = $this->parqueo_model->vehiculosDeposito();
         $this->load->view('vehiculos/deposito', $data);
@@ -56,9 +54,8 @@ class Parqueador extends CI_Controller {
         $data = array('titulo' => 'Panel de Control');
         $this->load->view('plantilla/header', $data);
         $id = $this->session->userdata('login');
-        $datos['usuario'] = $this->user_model->datosUser($id);
-        $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => 'active', 'tareaje'=>'');
+        $this->load->view('plantilla/cabecera');
+        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => 'active', 'tareaje' => '');
         $this->load->view('plantilla/menuizquierda', $menu);
         $data['vehiculos'] = $this->parqueo_model->vehiculosCulminados();
         $this->load->view('vehiculos/culminado', $data);
@@ -70,12 +67,10 @@ class Parqueador extends CI_Controller {
     public function nuevo() {
         $data = array('titulo' => 'Registrar Parqueo');
         $this->load->view('plantilla/header', $data);
-        $id = $this->session->userdata('login');
-        $datos['usuario'] = $this->user_model->datosUser($id);
-        $datos['via'] = $this->user_model->datosVias();
-        $this->load->view('plantilla/cabecera', $datos);
-        $menu = array('nuevo' => 'active', 'estacionado' => '', 'deposito' => '', 'culminado' => '', 'tareaje'=>'');
+        $this->load->view('plantilla/cabecera');
+        $menu = array('nuevo' => 'active', 'estacionado' => '', 'deposito' => '', 'culminado' => '', 'tareaje' => '');
         $this->load->view('plantilla/menuizquierda', $menu);
+        $datos['via'] = $this->user_model->datosVias();
         $this->load->view('vehiculos/nuevo', $datos);
         $this->load->view('plantilla/footer');
     }
@@ -88,7 +83,6 @@ class Parqueador extends CI_Controller {
         //date_default_timezone_set("Europe/Berlin");
         $placa = strtoupper($this->input->post('placa'));
         $idVia = $this->input->post('via');
-        $iduser = $this->session->userdata('login');
         $hora = $this->user_model->tiempoVias($idVia)->tiempoparqueo;
         $formato = '%Y-%m-%d %H:%M:%S';
         $fechaInicial = strftime($formato);
@@ -98,7 +92,7 @@ class Parqueador extends CI_Controller {
         $data = [
             'placa' => $placa,
             'codvia' => $idVia,
-            'iduserreg' => $iduser,
+            'iduserreg' => $_SESSION['iduser'],
             'horainicio' => $fechaInicial,
             'horafinal' => $fechaFinal
         ];

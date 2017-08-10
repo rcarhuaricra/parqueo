@@ -9,7 +9,7 @@
 
             <form action="<?php echo base_url(); ?>login/verificarLogin" method="post">
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" id="email" name="email"  value="<?php echo set_value('email'); ?>"/>
+                    <input type="text" class="form-control" placeholder="Email" id="email" name="email"  value="<?php echo set_value('email'); ?>"/>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     <?php echo form_error('email'); ?>
                 </div>

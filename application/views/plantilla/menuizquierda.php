@@ -7,28 +7,22 @@
     <section class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
-            <?php
-            foreach ($usuario->result() as $fila1) {
-                ?>
-                <div class="pull-left ">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle fa-stack-2x text-red "></i>
-                        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="pull-left info">
-                    <p>
-                        <?php
-                        echo $fila1->user_ape_pat . ' ';
-                        ?>
-                    </p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            <?php } ?>
-
+            <div class="pull-left ">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x text-red "></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+            </div>
+            <div class="pull-left info">
+                <p>
+                    <?php
+                    echo $_SESSION['email']
+                    ?>
+                </p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
-
         <ul class="sidebar-menu">
             <li>
                 <a>

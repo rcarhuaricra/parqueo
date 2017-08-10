@@ -23,7 +23,7 @@
                     <div class="box-body">
                         <form class="form-horizontal" id="fechaEdicion">
                             <div class="form-group col-sm-7">
-                                <label for="txtFecha" class="col-sm-3 control-label">Fecha</label>
+                                <label for="txtFecha" class="col-sm-3 control-label">Fecha:</label>
                                 <div class="col-sm-9">
                                     <div class="input-group date">
                                         <div class="input-group-addon">
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-sm-7">
-                                <label for="calle" class="col-sm-3 control-label">Calle</label>
+                                <label for="calle" class="col-sm-3 control-label">Calle:</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="calle" id="calle">
                                         <option value="">[Seleccione Calle]</option>
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-sm-7">
-                                <label for="calle" class="col-sm-3 control-label">Calle</label>
+                                <label for="calle" class="col-sm-3 control-label">Horario:</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="horario" id="horario" required>
                                         <option value="0">[selecciones Horario]</option>

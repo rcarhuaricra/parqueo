@@ -24,9 +24,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/dist/css/skins/_all-skins.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/plugins/iCheck/flat/blue.css">
-        
         <!-- Morris chart -->
-
         <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/plugins/morris/morris.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
@@ -51,7 +49,7 @@
         <script src="<?php echo base_url(); ?>recursos/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        
+
         <script src="<?php echo base_url(); ?>recursos/plugins/select2/select2.full.js" type="text/javascript"></script>
 
     </head>

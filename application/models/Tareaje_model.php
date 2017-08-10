@@ -39,10 +39,13 @@ class Tareaje_model extends CI_Model {
         return $this->db->insert_batch('mp_tareaje', $insertTareaje);
     }
     
-    public function tablaEditarTareaje($fecha, $calle){
-        $sql = "SELECT * FROM `mpuser` U 
-                INNER JOIN mproles R ON U.IDROL =R.IDROL
-                WHERE R.txtrol='PARQUEADOR'";
+    public function tablaEditarTareaje($fecha, $calle, $horario){
+        $sql = "SELECT * FROM `mp_tareaje` T
+                INNER JOIN `mp_cuadras` CU ON T.`id_cuadras`=CU.`id_cuadras`
+                INNER JOIN `mpcalle` CA ON CU.`id_via`=CA.`codvia`
+                INNER JOIN `mpuser` U ON T.`iduser_parqueador`=U.`iduser`
+                INNER JOIN `mp_turno` TU ON T.`id_turno`=TU.`id_turno`
+                WHERE T.`fecha_tarea`='$fecha' AND CA.`codvia`='$calle' AND TU.`id_turno`='$horario'";
         $consulta = $this->db->query($sql);
         return $consulta->result();
     }

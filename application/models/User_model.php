@@ -3,12 +3,19 @@
 class User_model extends CI_Model {
 
     public function getUser($email, $pass) {
-        $consulta = $this->db->query("SELECT * FROM `mpuser` WHERE email = '$email' and password ='$pass'");
+        $sql = "SELECT * FROM `mpuser` U
+                INNER JOIN `mproles` R ON U.`idrol` = R.`idrol`
+                WHERE email = '$email' AND PASSWORD ='$pass'";
+        $consulta = $this->db->query($sql);
         if ($consulta->num_rows() > 0) {
             $consulta = $consulta->row();
             $data = array(
-                'login' => $consulta->iduser,
-                'email' => $consulta->email
+                'login' => TRUE,
+                'iduser' => $consulta->iduser,
+                'nombre' => $consulta->user_name . " " . $consulta->user_ape_pat . " " . $consulta->user_ape_mat,
+                'email' => $consulta->email,
+                'idrol' => $consulta->idrol,
+                'txtrol' => $consulta->txtrol
             );
             $this->session->set_userdata($data);
         } else {

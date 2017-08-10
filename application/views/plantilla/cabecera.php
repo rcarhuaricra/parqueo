@@ -10,71 +10,62 @@
                 <span class="logo-lg"><span class="fa fa-car"></span> <b>Modulo</b>PARQUEO</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
-            <?php
-            foreach ($usuario->result() as $fila1) {
-                ?>
-                <nav class="navbar navbar-static-top">
-                    <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">                                    
-                                    <span class="fa-stack">
-                                        <i class="fa fa-circle fa-stack-2x text-red"></i>
+
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">                                    
+                                <span class="fa-stack">
+                                    <i class="fa fa-circle fa-stack-2x text-red"></i>
+                                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="hidden-xs">
+                                    <?php
+                                    echo $_SESSION['email']
+                                    ?>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <span class="fa-stack fa-3x">
+                                        <i class="fa fa-circle fa-stack-2x text-red "></i>
                                         <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                                     </span>
-                                    <span class="hidden-xs">
+                                    <p>
                                         <?php
-                                        echo $fila1->user_name . ' ';
-                                        echo $fila1->user_ape_pat . ' ';
-                                        echo $fila1->user_ape_mat;
+                                        echo $_SESSION['nombre'];
+                                        ?> - 
+                                        <?php
+                                        echo $_SESSION['txtrol']
                                         ?>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="user-header">
-                                        <span class="fa-stack fa-3x">
-                                            <i class="fa fa-circle fa-stack-2x text-red "></i>
-                                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                        <p>
-                                            <?php
-                                            echo $fila1->user_name . ' ' . $fila1->user_ape_pat . ' ' . $fila1->user_ape_mat;
-                                            ?> - 
-                                            <?php
-                                            echo $fila1->txtrol;
-                                            ?>
-                                            <small>
-                                                <?php
-                                                echo $fila1->fecreg;
-                                                ?>
-                                            </small>
-                                        </p>
-                                    </li>
+                                        <small>
 
-                                    <li class="user-footer">                                      
-                                        <div class="pull-right">
-                                            <a href="<?php echo base_url(); ?>/login/logout" class="btn btn-default btn-flat">Cerrar Sesión</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="user user-menu hidden-lg">
-                                <a >
-                                    <span class="fa-stack fa-1x" >
-                                        <i class="fa fa-circle fa-stack-2x text-blue "></i>
-                                        <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <?php
-            }
-            ?>
+                                        </small>
+                                    </p>
+                                </li>
 
+                                <li class="user-footer">                                      
+                                    <div class="pull-right">
+                                        <a href="<?php echo base_url(); ?>/login/logout" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="user user-menu hidden-lg">
+                            <a >
+                                <span class="fa-stack fa-1x" >
+                                    <i class="fa fa-circle fa-stack-2x text-blue "></i>
+                                    <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+           
         </header>

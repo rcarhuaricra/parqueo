@@ -65,7 +65,7 @@ class Tareaje extends CI_Controller {
             $dia = 1;
             while ($dia <= $dias) {
                 $insertTareaje[] = array(
-                    'id_tareaje' => str_pad($dia, 2, '0', STR_PAD_LEFT) . "-$m-" . AÑO_ACTUAL . $c . '-' . $t,
+                    'id_tareaje' => str_pad($dia, 2, '0', STR_PAD_LEFT) . "-$m-" . AÑO_ACTUAL  . '-' . str_pad($c, 3, '0', STR_PAD_LEFT) . '-' . $t,
                     'iduser_parqueador' => $u,
                     'id_turno' => $t,
                     'fecha_tarea' => AÑO_ACTUAL . "-$m-" . str_pad($dia, 2, "0", STR_PAD_LEFT),
@@ -98,7 +98,7 @@ class Tareaje extends CI_Controller {
         $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => '', 'tareaje' => 'active');
         $this->load->view('plantilla/menuizquierda', $menu);
         $this->load->model('generales_model');
-        $datos['calles']=$this->generales_model->listarCalles();
+        $datos['calles'] = $this->generales_model->listarCalles();
         $datos['Buscaturno'] = $this->Tareaje_model->Buscaturno();
         $this->load->view('tareaje/editarTareaje', $datos);
         $this->load->view('plantilla/piedePagina');
@@ -107,10 +107,13 @@ class Tareaje extends CI_Controller {
     }
 
     public function tablaTareajeEdicion() {
-        $fecha = $this->input->post('txtFecha');
-        $calle= $this->input->post('calle');
-        $data['Tareaje Edicion']=$this->Tareaje_model->tablaEditarTareaje($fecha, $calle);
         
+        $myDateTime = DateTime::createFromFormat('d/m/Y', $this->input->post('txtFecha'));
+        $fecha = $myDateTime->format('Y-m-d');
+        $calle = $this->input->post('calle');
+        $horario = $this->input->post('horario');
+        $data['TareajeEdicion'] = $this->Tareaje_model->tablaEditarTareaje($fecha, $calle, $horario);
+        $this->load->view('tareaje/tablaEditarTareaje',$data);
     }
 
 }

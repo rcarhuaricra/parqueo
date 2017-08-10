@@ -16,7 +16,7 @@
                             Vehículos estacionados el dia de hoy
                         </h3>
                         <h3 class="box-title pull-right"> 
-                            <strong><?php echo HORA_ACTUAL; ?></strong>
+                            <strong><?php echo HORA_ACTUAL;  echo $_SESSION['email']?></strong>
                         </h3>
                     </div>
                     <!-- /.box-header -->
