@@ -65,6 +65,7 @@ class Parqueador extends CI_Controller {
     }
 
     public function nuevo() {
+
         $data = array('titulo' => 'Registrar Parqueo');
         $this->load->view('plantilla/header', $data);
         $this->load->view('plantilla/cabecera');
@@ -80,26 +81,22 @@ class Parqueador extends CI_Controller {
     }
 
     public function guardar() {
-        //date_default_timezone_set("Europe/Berlin");
         $placa = strtoupper($this->input->post('placa'));
-        $idVia = $this->input->post('via');
-        $hora = $this->user_model->tiempoVias($idVia)->tiempoparqueo;
-        $formato = '%Y-%m-%d %H:%M:%S';
-        $fechaInicial = strftime($formato);
-        $dt = new DateTime($fechaInicial);
-        $dt->add(new DateInterval('PT' . $hora . 'M'));
-        $fechaFinal = $dt->format('Y-m-d H:i:s'); //17:00:00
+        $lado = strtoupper($this->input->post('lado'));
+        $estacionamiento = strtoupper($this->input->post('estacionamiento'));
         $data = [
             'placa' => $placa,
-            'codvia' => $idVia,
+            'id_tareaje' => $_SESSION['idtareaje'],
             'iduserreg' => $_SESSION['iduser'],
-            'horainicio' => $fechaInicial,
-            'horafinal' => $fechaFinal
+            'lado' => $lado,
+            'estacionamiento' => $estacionamiento
         ];
-        $nuevoId = $this->parqueo_model->guardarNuevoParqueo($data);
+        echo $nuevoId = $this->parqueo_model->guardarNuevoParqueo($data);
+        if($nuevoId == TRUE){
+             redirect("parqueador/imprimir/$nuevoId");
+        }
 
-        redirect("parqueador/imprimir/$nuevoId");
-
+        //redirect("parqueador/imprimir/$nuevoId");
         //redirect("PaquetesController");
     }
 

@@ -20,6 +20,8 @@ class User_model extends CI_Model {
             $this->session->set_userdata($data);
         } elseif ($row->idrol == PARQUEADOR) {
             $sql1 = "SELECT * FROM `mp_tareaje` TA
+                    INNER JOIN `mp_cuadras` CU ON CU.`id_cuadras`=TA.`id_cuadras`
+                    INNER JOIN `mpcalle` CA ON CA.`codvia`=CU.`id_cuadras`
                     INNER JOIN `mpuser` U ON  TA.`iduser_parqueador`=U.`iduser`
                     INNER JOIN `mp_turno` TU ON TU.`id_turno`=TA.`id_turno`
                     WHERE U.`email`='$email' 
@@ -36,7 +38,10 @@ class User_model extends CI_Model {
                 'email' => $consulta1->email,
                 'idrol' => $consulta1->idrol,
                 'txtrol' => $consulta1->txtrol,
-                'idtareaje' => $consulta1->id_tareaje
+                'idtareaje' => $consulta1->id_tareaje,
+                'codvia' => $consulta1->codvia,
+                'calle' => $consulta1->tipoVia." ".$consulta1->nombrevia." Cuadra ".$consulta1->cuadra
+                
             );
             $this->session->set_userdata($data);
         }

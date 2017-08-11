@@ -16,7 +16,9 @@
                             Vehículos estacionados el dia de hoy
                         </h3>
                         <h3 class="box-title pull-right"> 
-                            <strong><?php echo HORA_ACTUAL;  echo $_SESSION['email']?></strong>
+                            <strong><?php echo HORA_ACTUAL;
+echo $_SESSION['email']
+?></strong>
                         </h3>
                     </div>
                     <!-- /.box-header -->
@@ -33,45 +35,28 @@
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($vehiculos->result() as $fila1) {
-                                    $i = HORA_ACTUAL;
-                                    $f = $fila1->horafinal;
-                                    $datetime1 = new DateTime($f);
-                                    $datetime2 = new DateTime($i);
-                                    $interval = $datetime2->diff($datetime1);
-                                    if ($interval->format('%R') == "+") {
-                                        echo "<tr class='success' id='tr$fila1->idvehiculo'>";
-                                    } else {
-                                        echo "<tr class='danger' id='tr$fila1->idvehiculo'>";
-                                    }
-                                    echo "<td>" . $fila1->placa . "</td>";
-                                    echo "<td>" . $fila1->horainicio . "</td>";
-                                    echo "<td>" . $fila1->horafinal . "</td>";
+                                foreach ($vehiculos as $fila) {
+                                    echo "<tr>";
+                                    echo "<td>$fila->placa</td>";
+                                    echo "<td>$fila->horainicio</td>";
+                                    echo "<td>$fila->horafinal</td>";
+                                    echo "<td>$fila->diferencia</td>";
                                     echo "<td>";
-                                    echo $interval->format('%R %h:%i:%S horas');
-                                    echo "</td>";
-                                    echo "<td>";
-                                    $date = new DateTime($fila1->horainicio);
-                                    //echo $date->format('H:i:s');
-                                    //echo "<br>";
-                                    //echo date('H:s:i', strtotime($date->format('H:i:s') . '+ 30 minutes'));
                                     ?>
-                                <button class="btn btn-danger btn-lg" onclick="button('anulado', '<?php echo $fila1->placa; ?>', '<?php echo $fila1->idvehiculo; ?>');" id_evento="anulado" name="<?php echo $fila1->placa; ?>" id="<?php echo $fila1->idvehiculo; ?>" title="Anular">
+                                <button class="btn btn-danger btn-lg" onclick="button('anulado', '<?php echo $fila->placa; ?>', '<?php echo $fila->idvehiculo; ?>');" id_evento="anulado" name="<?php echo $fila->placa; ?>" id="<?php echo $fila->idvehiculo; ?>" title="Anular">
                                     <span class="ion-trash-a" style="font-size: 1.3em;"></span>
                                 </button>
-                                <button class="btn btn-primary btn-lg" onclick="button('culminado', '<?php echo $fila1->placa; ?>', '<?php echo $fila1->idvehiculo; ?>');" id_evento="culminado" name="<?php echo $fila1->placa; ?>" id="<?php echo $fila1->idvehiculo; ?>" title="Culminar">
+                                <button class="btn btn-primary btn-lg" onclick="button('culminado', '<?php echo $fila->placa; ?>', '<?php echo $fila->idvehiculo; ?>');" id_evento="culminado" name="<?php echo $fila->placa; ?>" id="<?php echo $fila->idvehiculo; ?>" title="Culminar">
                                     <span class="icon-auto" style="font-size: 1.4em;"></span>
                                 </button>
-                                <button class="btn btn-success btn-lg" onclick="button('remolcado', '<?php echo $fila1->placa; ?>', '<?php echo $fila1->idvehiculo; ?>');" id_evento="remolcado" name="<?php echo $fila1->placa; ?>" id="<?php echo $fila1->idvehiculo; ?>"  title="Remolcar">
+                                <button class="btn btn-success btn-lg" onclick="button('remolcado', '<?php echo $fila->placa; ?>', '<?php echo $fila->idvehiculo; ?>');" id_evento="remolcado" name="<?php echo $fila->placa; ?>" id="<?php echo $fila->idvehiculo; ?>"  title="Remolcar">
                                     <span class="icon-grua" style="font-size: 1.4em;"></span>
                                 </button>
-                                <a href="<?php echo base_url(); ?>parqueador/imprimir/<?php echo $fila1->idvehiculo; ?>" class="btn btn-warning btn-lg" name="<?php echo $fila1->placa; ?>" id="<?php echo $fila1->idvehiculo; ?>"  title="Imprimir">
+                                <a href="<?php echo base_url(); ?>parqueador/imprimir/<?php echo $fila->idvehiculo; ?>" class="btn btn-warning btn-lg" name="<?php echo $fila->placa; ?>" id="<?php echo $fila->idvehiculo; ?>"  title="Imprimir">
                                     <span class="fa fa-print" style="font-size: 1.4em;"></span>
                                 </a>
 
                                 <?php
-                                echo "</td>";
-                                echo "</tr>";
                             }
                             ?>
                             </tbody>

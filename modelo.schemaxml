@@ -14,14 +14,14 @@
   `codvia` int(11) NOT NULL AUTO_INCREMENT,
   `tipoVia` varchar(10) DEFAULT NULL,
   `nombrevia` varchar(30) DEFAULT NULL,
-  `tiempoparqueo` int(1) DEFAULT NULL,
+  `tiempoparqueo` time DEFAULT NULL,
   `flgestado` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`codvia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mpestadovehiculo" view="standard">
-<left>1388</left>
-<top>107</top>
+<left>1357</left>
+<top>132</top>
 <width>197</width>
 <height>107</height>
 <sql_create_table>CREATE TABLE `mpestadovehiculo` (
@@ -65,23 +65,26 @@
 <left>1005</left>
 <top>77</top>
 <width>271</width>
-<height>226</height>
+<height>266</height>
 <sql_create_table>CREATE TABLE `mpvehiculo` (
-  `idvehiculo` int(5) NOT NULL AUTO_INCREMENT,
+  `idvehiculo` varchar(18) NOT NULL,
   `placa` varchar(8) DEFAULT NULL,
   `id_tareaje` varchar(25) DEFAULT NULL,
   `iduserreg` int(5) DEFAULT NULL,
-  `horainicio` datetime DEFAULT CURRENT_TIMESTAMP,
+  `horainicio` datetime DEFAULT NULL,
   `horafinal` datetime DEFAULT NULL,
   `idestado` int(5) DEFAULT '1',
   `observacion` varchar(200) DEFAULT NULL,
   `hora_salida_parqueo` datetime DEFAULT NULL,
+  `lado` varchar(2) DEFAULT NULL,
+  `casillero` int(2) DEFAULT NULL,
+  `fecreg` datetime DEFAULT NULL,
   PRIMARY KEY (`idvehiculo`),
   KEY `iduser` (`iduserreg`),
   KEY `FK_mpvehiculo` (`id_tareaje`),
   KEY `FK_mpvehiculoestado` (`idestado`),
   CONSTRAINT `FK_mpvehiculoestado` FOREIGN KEY (`idestado`) REFERENCES `mpestadovehiculo` (`idestado`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mp_turno" view="standard">
 <left>295</left>

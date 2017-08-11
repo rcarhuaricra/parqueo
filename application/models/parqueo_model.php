@@ -3,14 +3,18 @@
 class parqueo_model extends CI_Model {
 
     public function guardarNuevoParqueo($data) {
-
-        //$this->db->insert('mpvehiculo', $data);
-        if ($this->db->insert('mpvehiculo', $data)) {
-            return $this->db->insert_id();
+        $placa = $data['placa'];
+        $id_tareaje = $data['id_tareaje'];
+        $iduserreg = $data['iduserreg'];
+        $lado = $data['lado'];
+        $estacionamiento = $data['estacionamiento'];
+        $sql = "CALL insertEstacionamiento('$placa','$id_tareaje','$iduserreg','$lado','$estacionamiento')";
+        $query=$this->db->query($sql);
+        if (isset($query)) {
+            return $query->row()->ID;
         } else {
-            return false;
+            show_error('Error!');
         }
-        //header("location:" . base_url());
     }
 
     public function generarticket($nuevoId, $iduser) {
@@ -21,21 +25,19 @@ class parqueo_model extends CI_Model {
                 INNER JOIN `mpuser` u ON v.iduserreg=u.iduser
                 WHERE v.idvehiculo='$nuevoId'
                 AND v.iduserreg='$iduser'";
-        
-        if($this->db->query($sql)){
+
+        if ($this->db->query($sql)) {
             return $this->db->query($sql)->row();
-        }else{
+        } else {
             return FALSE;
         }
-        
     }
 
     public function vehiculosParqueados() {
-        $sql = "SELECT * FROM `mpvehiculo` v
-        INNER JOIN `mpcalle` c ON c.codvia=v.codvia
-        INNER JOIN `mpestadovehiculo` e ON e.idestado=v.idestado
-        where v.idestado='1'";
-        return $this->db->query($sql);
+        $id = $_SESSION["iduser"];
+        $sql = "CALL selectParqueado($id)";
+        $query = $this->db->query($sql);
+        return $query->result();
     }
 
     public function vehiculosCulminados() {

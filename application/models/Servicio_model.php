@@ -2,11 +2,26 @@
 
 class Servicio_model extends CI_Model {
 
-    public function Parqueados() {
-        $sql = "SELECT * FROM `mpvehiculo` v
-        INNER JOIN `mpcalle` c ON c.codvia=v.codvia
-        INNER JOIN `mpestadovehiculo` e ON e.idestado=v.idestado
-        where v.idestado='1'";
+    public function ParqueadosGruas() {
+        $sql = "SELECT VE.`idvehiculo`
+                , VE.`placa`
+                , VE.`horainicio`
+                , VE.`horafinal`
+                , VE.`idestado`
+                , EV.`txtestado`
+                , CA.`tiempoparqueo`
+                ,CONCAT(CA.`tipoVia`,' ',CA.`nombrevia`) AS CALLE
+                , CU.`cuadra`
+                , VE.`lado`
+                ,VE.`casillero`
+                , TIMEDIFF(NOW(),VE.`horafinal`) 
+                , IF(TIMEDIFF(NOW(),VE.`horafinal`) < '00:15:00' ,'1', '2') AS EstadoGrua
+                FROM `mpvehiculo` VE
+                INNER JOIN `mp_tareaje` TA ON TA.`id_tareaje`=VE.`id_tareaje`
+                INNER JOIN `mp_cuadras` CU ON CU.`id_cuadras`=TA.`id_cuadras`
+                INNER JOIN `mpestadovehiculo` EV ON EV.`idestado`=VE.`idestado`
+                INNER JOIN `mpcalle` CA ON CA.`codvia`=CU.`id_via`
+                WHERE TIMEDIFF(NOW(),VE.`horafinal`)>'00:00:00'";
         $query= $this->db->query($sql);
         return $query->result();
     }

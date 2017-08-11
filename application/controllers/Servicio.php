@@ -12,7 +12,7 @@ class Servicio extends CI_Controller {
 
     public function Parqueados() {
 
-        $dato = $this->servicio_model->Parqueados() ;
+        $dato = $this->servicio_model->ParqueadosGruas() ;
         echo json_encode($dato);
     }
 

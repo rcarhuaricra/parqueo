@@ -2,6 +2,24 @@ $(document).ready(function () {
     $("select").select2();
 });
 
+/* VALIDAR SOLO NUMEROS  */
+$('.solo-numero').keyup(function () {
+    this.value = (this.value + '').replace(/[^0-9]/g, '');
+});
+/* VALIDAR SOLO TEXTO */
+$('.solo-texto').keyup(function () {
+    this.value = (this.value + '').replace(/[^ a-záéíóúüñ]+/ig, '');
+});
+/* VALIDAR TEXTO SIN CARACTERES DESCOCNOCIDOS */
+$('.texto-limpio').keyup(function () {
+    this.value = (this.value + '').replace(/[^ a-z0-9áéíóúüñ#º()]+/ig, '');
+});
+
+/* VALIDAR TEXTO SIN CARACTERES DESCOCNOCIDOS */
+$('.texto-placa').keyup(function () {
+    this.value = (this.value + '').replace(/[^a-z0-9-]+/ig, '');
+});
+
 
 
 $('#table').DataTable({

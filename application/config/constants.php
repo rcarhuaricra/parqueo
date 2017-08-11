@@ -86,8 +86,8 @@ defined('EXIT__AUTO_MIN') OR define('EXIT__AUTO_MIN', 9); // lowest automaticall
 defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-define(ADMINISTRADOR, '1');
-define(PARQUEADOR, '2');
+define('ADMINISTRADOR', '1');
+define('PARQUEADOR', '2');
 
 date_default_timezone_set("America/Lima");
 
