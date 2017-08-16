@@ -20,15 +20,15 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mpestadovehiculo" view="standard">
-<left>1357</left>
-<top>132</top>
+<left>1020</left>
+<top>477</top>
 <width>197</width>
 <height>107</height>
 <sql_create_table>CREATE TABLE `mpestadovehiculo` (
   `idestado` int(5) NOT NULL AUTO_INCREMENT,
   `txtestado` varchar(35) DEFAULT NULL,
   PRIMARY KEY (`idestado`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mproles" view="standard">
 <left>12</left>
@@ -48,7 +48,7 @@
 <height>226</height>
 <sql_create_table>CREATE TABLE `mpuser` (
   `iduser` int(5) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(40) DEFAULT NULL,
+  `user_name` varchar(40) NOT NULL,
   `user_ape_pat` varchar(40) DEFAULT NULL,
   `user_ape_mat` varchar(40) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
@@ -62,12 +62,12 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mpvehiculo" view="standard">
-<left>1005</left>
-<top>77</top>
+<left>601</left>
+<top>387</top>
 <width>271</width>
-<height>266</height>
+<height>313</height>
 <sql_create_table>CREATE TABLE `mpvehiculo` (
-  `idvehiculo` varchar(18) NOT NULL,
+  `idvehiculo` varchar(30) NOT NULL,
   `placa` varchar(8) DEFAULT NULL,
   `id_tareaje` varchar(25) DEFAULT NULL,
   `iduserreg` int(5) DEFAULT NULL,
@@ -78,12 +78,15 @@
   `hora_salida_parqueo` datetime DEFAULT NULL,
   `lado` varchar(2) DEFAULT NULL,
   `casillero` int(2) DEFAULT NULL,
-  `fecreg` datetime DEFAULT NULL,
+  `fecreg` datetime NOT NULL,
+  `userreg` varchar(30) DEFAULT NULL,
+  `fecmod` datetime DEFAULT NULL,
+  `usermod` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idvehiculo`),
   KEY `iduser` (`iduserreg`),
   KEY `FK_mpvehiculo` (`id_tareaje`),
-  KEY `FK_mpvehiculoestado` (`idestado`),
-  CONSTRAINT `FK_mpvehiculoestado` FOREIGN KEY (`idestado`) REFERENCES `mpestadovehiculo` (`idestado`)
+  KEY `FK_mpvehiculo_estado` (`idestado`),
+  CONSTRAINT `FK_mpvehiculo_estado` FOREIGN KEY (`idestado`) REFERENCES `mpestadovehiculo` (`idestado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mp_turno" view="standard">
@@ -106,7 +109,7 @@
 <height>251</height>
 <sql_create_table>CREATE TABLE `mp_tareaje` (
   `id_tareaje` varchar(25) NOT NULL,
-  `iduser_parqueador` int(11) DEFAULT NULL,
+  `iduser_parqueador` int(5) DEFAULT NULL,
   `id_turno` int(11) DEFAULT NULL,
   `fecha_tarea` date DEFAULT NULL,
   `fecreg` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -115,9 +118,9 @@
   `usermod` varchar(50) DEFAULT NULL,
   `id_cuadras` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_tareaje`),
-  KEY `FK_MP_tareaje` (`iduser_parqueador`),
   KEY `FK_MP_tareaje_turno` (`id_turno`),
   KEY `FK_MP_tareaje_cuadra` (`id_cuadras`),
+  KEY `FK_MP_tareaje` (`iduser_parqueador`),
   CONSTRAINT `FK_MP_tareaje` FOREIGN KEY (`iduser_parqueador`) REFERENCES `mpuser` (`iduser`),
   CONSTRAINT `FK_MP_tareaje_cuadra` FOREIGN KEY (`id_cuadras`) REFERENCES `mp_cuadras` (`id_cuadras`),
   CONSTRAINT `FK_MP_tareaje_turno` FOREIGN KEY (`id_turno`) REFERENCES `mp_turno` (`id_turno`)

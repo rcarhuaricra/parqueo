@@ -31,19 +31,18 @@
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($vehiculos->result() as $fila1) {
-                                    echo "<tr>";
-                                    echo "<td>" . $fila1->placa . "</td>";
-                                    echo "<td>" . $fila1->horainicio . "</td>";
-                                    echo "<td>" . $fila1->horafinal . "</td>";
+                                  foreach ($vehiculos as $fila) {
+
+                                    if ($fila->diferencia < '00:00:00') {
+                                        echo "<tr class='danger odd'>";
+                                    } else {
+                                        echo "<tr class='success odd'>";
+                                    }
+                                    echo "<td>$fila->placa</td>";
+                                    echo "<td>$fila->horainicio</td>";
+                                    echo "<td>$fila->horafinal</td>";
+                                    echo "<td>$fila->diferencia</td>";
                                     echo "<td>";
-                                    $i = HORA_ACTUAL;
-                                    $f = $fila1->horafinal;
-                                    $datetime1 = new DateTime($i);
-                                    $datetime2 = new DateTime($f);
-                                    $interval = $datetime1->diff($datetime2);
-                                    echo $interval->format('%h:%i:%S horas');
-                                    echo "</td>";
                                    
                                     echo "</tr>";
                                 }

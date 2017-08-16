@@ -5,7 +5,7 @@
             Velículos 
             <small> remolcados por grúa</small>
         </h1>
-       
+
     </section>
 
     <!-- Main content -->
@@ -31,23 +31,13 @@
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($vehiculos->result() as $fila1) {
+                                foreach ($vehiculos as $fila1) {
                                     echo "<tr>";
                                     echo "<td>" . $fila1->placa . "</td>";
                                     echo "<td>" . $fila1->horainicio . "</td>";
                                     echo "<td>" . $fila1->horafinal . "</td>";
-                                    echo "<td>";
-                                    $i = HORA_ACTUAL;
-                                    $f = $fila1->horafinal;
-                                    $datetime1 = new DateTime($i);
-                                    $datetime2 = new DateTime($f);
-                                    $interval = $datetime1->diff($datetime2);
-                                    echo $interval->format('%h:%i:%S horas');
-                                    echo "</td>";
-                                    echo "<td>";
-                                    ?>
-                                    <?php
-                                    echo "</td>";
+                                    echo "<td>$fila1->diferencia</td>";
+                                    echo "<td></td>";
                                     echo "</tr>";
                                 }
                                 ?>

@@ -18,11 +18,11 @@
             echo "<td>$valor->txt_turno</td>";
             echo "<td>$valor->tipoVia $valor->nombrevia</td>";
             echo "<td>$valor->cuadra</td>";
-            echo "<td><a href=''>Editar</a></td>";
-            echo '</tr>';
-        }
-        ?>
-
-
-    </tbody>
+            ?>
+        <td><a class='btn btn-success' id='buttonEditar' href='<?php echo base_url().'tareaje/editarusuario/'.$valor->id_tareaje ?>'>Editar</a></td>
+        <?php
+        echo '</tr>';
+    }
+    ?>
+</tbody>
 </table>

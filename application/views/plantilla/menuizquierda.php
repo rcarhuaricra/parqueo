@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li class="<?php echo $deposito; ?>">
-                <a href="<?php echo base_url(); ?>parqueador/deposito">
+                <a href="<?php echo base_url(); ?>parqueador/listardeposito">
                     <i class="fa fa-circle-o text-red"></i> <span>Deposito</span>
                     <span class="pull-right-container">
                         <small class="label pull-right bg-red"></small>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li class="<?php echo $culminado; ?>">
-                <a href="<?php echo base_url(); ?>parqueador/culminados">
+                <a href="<?php echo base_url(); ?>parqueador/listarculminados">
                     <i class="fa fa-circle-o text-yellow"></i> <span>culminados</span>
                     <span class="pull-right-container">
                         <small class="label pull-right bg-black"></small>

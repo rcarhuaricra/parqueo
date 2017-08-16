@@ -27,14 +27,29 @@ class Parqueador extends CI_Controller {
         $this->load->view('plantilla/cabecera');
         $menu = array('nuevo' => '', 'estacionado' => 'active', 'deposito' => '', 'culminado' => '', 'tareaje' => '');
         $this->load->view('plantilla/menuizquierda', $menu);
-        $data['vehiculos'] = $this->parqueo_model->vehiculosParqueados();
+        $estadoVehiculo = ESTACIONADO;
+        $data['vehiculos'] = $this->parqueo_model->vehiculosEstado($estadoVehiculo);
         $this->load->view('vehiculos/estacionados', $data);
         $this->load->view('plantilla/piedePagina');
         //$this->load->view('plantilla/menuderecha');
         $this->load->view('plantilla/footer');
     }
 
-    public function deposito() {
+    public function qr() {
+        $this->load->library('ciqrcode');
+
+        header("Content-Type: image/png");
+        $params['data'] = 'www.ricSSSSv.pe';
+
+        $params['level'] = 'H';
+        $params['size'] = 10;
+        $params['savename'] = FCPATH . 'tes.png';
+        $this->ciqrcode->generate($params);
+
+        echo '<img src="' . base_url() . 'tes.png" />';
+    }
+
+    public function listardeposito() {
 
         $data = array('titulo' => 'Panel de Control');
         $this->load->view('plantilla/header', $data);
@@ -42,14 +57,15 @@ class Parqueador extends CI_Controller {
         $this->load->view('plantilla/cabecera');
         $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => 'active', 'culminado' => '', 'tareaje' => '');
         $this->load->view('plantilla/menuizquierda', $menu);
-        $data['vehiculos'] = $this->parqueo_model->vehiculosDeposito();
+        $estadoVehiculo = REMOLCADO;
+        $data['vehiculos'] = $this->parqueo_model->vehiculosEstado($estadoVehiculo);
         $this->load->view('vehiculos/deposito', $data);
         $this->load->view('plantilla/piedePagina');
         //$this->load->view('plantilla/menuderecha');
         $this->load->view('plantilla/footer');
     }
 
-    public function culminados() {
+    public function listarculminados() {
 
         $data = array('titulo' => 'Panel de Control');
         $this->load->view('plantilla/header', $data);
@@ -57,7 +73,8 @@ class Parqueador extends CI_Controller {
         $this->load->view('plantilla/cabecera');
         $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => 'active', 'tareaje' => '');
         $this->load->view('plantilla/menuizquierda', $menu);
-        $data['vehiculos'] = $this->parqueo_model->vehiculosCulminados();
+        $estadoVehiculo = CULMINADO_A_TIEMPO;
+        $data['vehiculos'] = $this->parqueo_model->vehiculosEstado($estadoVehiculo);
         $this->load->view('vehiculos/culminado', $data);
         $this->load->view('plantilla/piedePagina');
         //$this->load->view('plantilla/menuderecha');
@@ -91,9 +108,11 @@ class Parqueador extends CI_Controller {
             'lado' => $lado,
             'estacionamiento' => $estacionamiento
         ];
-        echo $nuevoId = $this->parqueo_model->guardarNuevoParqueo($data);
-        if($nuevoId == TRUE){
-             redirect("parqueador/imprimir/$nuevoId");
+        $nuevoId = $this->parqueo_model->guardarNuevoParqueo($data);
+        if ($nuevoId != FALSE) {
+            redirect("parqueador/imprimirPDF/$nuevoId");
+            
+            //redirect("parqueador/nuevo");
         }
 
         //redirect("parqueador/imprimir/$nuevoId");
@@ -111,6 +130,31 @@ class Parqueador extends CI_Controller {
         } else {
             $this->load->view('vehiculos/impresion', $dato);
         }
+    }
+
+    public function imprimirPDF($nuevoId) {
+        $this->load->library('dompdf_gen');
+        $dato['ticket'] = $this->parqueo_model->generarticket($nuevoId);
+        if ($dato['ticket'] == false) {
+            header("Location:" . base_url() . "parqueador/estacionados");
+        } else {
+            $paper_size1 = array(0, 0, 275.5, 287.1);
+            $this->load->view('vehiculos/impresionPDF', $dato, false);
+            $html = $this->output->get_output();
+            $this->dompdf->set_paper($paper_size1);
+            $this->dompdf->load_html($html);
+            $this->dompdf->render();
+            $this->dompdf->stream("Parqueo.pdf", array('Attachment' => 1));
+            
+        }
+        
+    }
+
+    public function updateEstados() {
+        $id = $this->input->post('id');
+        $estado = $this->input->post('estado');
+        $user = $_SESSION['email'];
+        $dato['ticket'] = $this->parqueo_model->updateEstadoVehiculo($estado, $user, $id);
     }
 
     public function anulado() {

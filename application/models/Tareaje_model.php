@@ -36,10 +36,15 @@ class Tareaje_model extends CI_Model {
     }
 
     public function guardarTareajeMasivo($insertTareaje) {
-        return $this->db->insert_batch('mp_tareaje', $insertTareaje);
+        $query = $this->db->insert_batch('mp_tareaje', $insertTareaje);
+        if ($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
-    
-    public function tablaEditarTareaje($fecha, $calle, $horario){
+
+    public function tablaEditarTareaje($fecha, $calle, $horario) {
         $sql = "SELECT * FROM `mp_tareaje` T
                 INNER JOIN `mp_cuadras` CU ON T.`id_cuadras`=CU.`id_cuadras`
                 INNER JOIN `mpcalle` CA ON CU.`id_via`=CA.`codvia`
@@ -48,6 +53,22 @@ class Tareaje_model extends CI_Model {
                 WHERE T.`fecha_tarea`='$fecha' AND CA.`codvia`='$calle' AND TU.`id_turno`='$horario'";
         $consulta = $this->db->query($sql);
         return $consulta->result();
+    }
+
+    public function usuarioParquedor($id) {
+        $sql = "SELECT * FROM `mp_tareaje` T
+                INNER JOIN `mpuser` U ON T.`iduser_parqueador`=U.`iduser`
+                INNER JOIN `mp_turno` TU ON TU.`id_turno`=T.`id_turno`
+                WHERE T.`id_tareaje`='$id'";
+        $query = $this->db->query($sql);
+        return $query->row();
+    }
+    public function updateParqueador($id, $user){
+         $sql = "UPDATE `mp_tareaje` T
+                SET `iduser_parqueador`=$user
+                WHERE T.`id_tareaje`='$id'";
+         $query = $this->db->query($sql);
+         return $query;
     }
 
 }

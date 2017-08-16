@@ -36,9 +36,8 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
         <!-- sweetalert -->
         <link href="<?php echo base_url(); ?>recursos/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <!-- DataTables -->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/plugins/datatables/dataTables.bootstrap.css">
-        <link href="<?php echo base_url(); ?>recursos/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet" type="text/css"/>
+
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -49,7 +48,13 @@
         <script src="<?php echo base_url(); ?>recursos/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
+        <!-- DataTables -->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/plugins/datatables/dataTables.bootstrap.css">
+        <link href="<?php echo base_url(); ?>recursos/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet" type="text/css"/>
+        <!-- DataTables -->
+        <script src="<?php echo base_url(); ?>recursos/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url(); ?>recursos/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>recursos/plugins/datatables/dataTables.bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>recursos/plugins/select2/select2.full.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>recursos/recursosmsi/script.js" type="text/javascript"></script>
     </head>

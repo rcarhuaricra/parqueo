@@ -70,8 +70,8 @@
                 <tr>
                     <td colspan="20">
                         <p>TMP(tiempo maximo de permanencia)</p>
-                        <p style="font-size: 0.65em; text-align: justify">Según Ordenanza Municipal Nº 448-MSI y Decreto de Alcaldía Nº 008-2017-MSI
-                        que regula el uso y tiempo de los espacios de estacionamiento público</p>
+                        <p style="font-size: 0.65em; text-align: justify">Cuenta con 15 min de Tolerancia, Según Ordenanza Municipal 
+                            Nº 448-MSI y Decreto de Alcaldía Nº 008-2017-MSI que regula el uso y tiempo de los espacios de estacionamiento público.</p>
                     </td>
                 </tr>
             </tbody>
@@ -82,7 +82,7 @@
 
 
 <script>
-    function imprimir() {
+    function imprimira() {
        window.print();
        //top.location = "<?php echo base_url(); ?>"
     }

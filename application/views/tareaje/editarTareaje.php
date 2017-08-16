@@ -47,10 +47,10 @@
                                 </div>
                             </div>
                             <div class="form-group col-sm-7">
-                                <label for="calle" class="col-sm-3 control-label">Horario:</label>
+                                <label for="horario" class="col-sm-3 control-label">Horario:</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="horario" id="horario" required>
-                                        <option value="0">[selecciones Horario]</option>
+                                        <option value="">[selecciones Horario]</option>
                                         <?php
                                         foreach ($Buscaturno->result() as $fila1) {
                                             echo "<option value='$fila1->id_turno'>$fila1->txt_turno</option>";
@@ -82,7 +82,13 @@
         }
         if ($("#calle").val() === '') {
             swal({title: "Seleccione una Calle Valida!", timer: 2000});
-            $("#txtFecha").focus();
+            $("#calle").focus();
+            $("#TablaTareaje").html('');
+            correcto = false;
+        }
+        if ($("#horario").val() === '') {
+            swal({title: "Seleccione un Turno!", timer: 2000});
+            $("#horario").focus();
             $("#TablaTareaje").html('');
             correcto = false;
         }

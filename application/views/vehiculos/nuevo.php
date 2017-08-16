@@ -30,7 +30,7 @@
                                 </h4>
                             </div>
                             <div class="register-box-body">
-                                <form action="<?php echo base_url() ?>parqueador/guardar" method="post">
+                                <form action="<?php echo base_url() ?>parqueador/guardar" id="nuevo" method="post" autocomplete="off">
                                     <div class="form-group has-feedback">
                                         <input type="text" class="form-control input-lg texto-placa" style="text-transform:uppercase;" placeholder="INGRESE PLACA" name="placa" id="placa" required/>
                                         <span class="ion-model-s form-control-feedback"></span>
@@ -47,7 +47,7 @@
                                         <input type="text" class="form-control input-lg solo-numero" style="text-transform:uppercase;" placeholder="Número de Estacionamiento" name="estacionamiento" id="estacionamiento   " required/>
                                     </div>
                                     <div class="form-group">                   
-                                        <button type="submit" class="btn btn-primary btn-block btn-flat"><span class="ion-plus-round"></span> Registrar</button>                    
+                                        <button type="submit" id="enviar" onclick="pregunta()" class="btn btn-primary btn-block btn-flat"><span class="ion-plus-round"></span> Registrar</button>                    
                                     </div>
                                     <div class="form-group">                   
                                         <a href="<?php echo base_url(); ?>" class="btn btn-danger btn-block btn-flat"> <span class="ion-reply"></span> Volver</a>
@@ -63,3 +63,12 @@
 </div>
 
 
+<script>
+function pregunta(){ 
+    if (confirm('¿Estas seguro de enviar este formulario?')){ 
+       if(document.nuevo.submit()){
+           location.reload();
+       } 
+    } 
+} 
+</script>

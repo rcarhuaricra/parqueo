@@ -55,15 +55,15 @@ echo "Hubo {$numero} días en " . $meses[$mes] . " del " . AÑO_ACTUAL;
             type: 'post',
             url: '<?php echo base_url(); ?>tareaje/guardarTareaje',
             data: $('#guardarTareaje').serialize(),
+           
             success: function (response) {
 
                 if (response > 0) {
-                    swal({text: "Se Agrego Correctamente",
-                        timer: 2000,
-                        showConfirmButton: false});
-                    console.log(response);
-                    console.log('ingreso todo');
+                    
+                    swal({title: "Exito!", text: "El tareaje se Agrego Correctamente", timer: 2500});
+                    $("#TablaTareaje").html('');
                 } else {
+                    swal({title: "Exito!", text: "El tareaje NO se Agrego", timer: 2500});
                     console.log(response);
                     console.log('no ingreso nada');
                 }

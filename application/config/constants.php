@@ -97,3 +97,12 @@ define('MES_ACTUAL',strftime('%m'));
 define('FECHA_HORA_ACTUAL',strftime('%Y-%m-%d %H:%M:%S'));
 
 define('HORA_ACTUAL',strftime('%H:%M:%S'));
+
+
+
+define('ESTACIONADO','1');
+define('CULMINADO_A_TIEMPO','2');
+define('REMOLCADO','3');
+define('ANULADO','4');
+define('CULMINADO_CON_INFRACCION','5');
+define('GRUA_EN_CAMINO','6');

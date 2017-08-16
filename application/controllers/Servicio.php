@@ -6,13 +6,19 @@ class Servicio extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-       
+
         $this->load->model('servicio_model');
     }
 
     public function Parqueados() {
 
-        $dato = $this->servicio_model->ParqueadosGruas() ;
+        $dato = $this->servicio_model->ParqueadosGruas();
+        echo json_encode($dato);
+    }
+
+    public function updateEstados($id, $user, $estado) {
+        
+        $dato = $this->servicio_model->updateEstadoModel($id, $user, $estado);
         echo json_encode($dato);
     }
 

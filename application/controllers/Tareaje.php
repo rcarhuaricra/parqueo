@@ -65,7 +65,7 @@ class Tareaje extends CI_Controller {
             $dia = 1;
             while ($dia <= $dias) {
                 $insertTareaje[] = array(
-                    'id_tareaje' => str_pad($dia, 2, '0', STR_PAD_LEFT) . "-$m-" . AÑO_ACTUAL  . '-' . str_pad($c, 3, '0', STR_PAD_LEFT) . '-' . $t,
+                    'id_tareaje' => str_pad($dia, 2, '0', STR_PAD_LEFT) . "-$m-" . AÑO_ACTUAL . '-' . str_pad($c, 3, '0', STR_PAD_LEFT) . '-' . $t,
                     'iduser_parqueador' => $u,
                     'id_turno' => $t,
                     'fecha_tarea' => AÑO_ACTUAL . "-$m-" . str_pad($dia, 2, "0", STR_PAD_LEFT),
@@ -107,13 +107,37 @@ class Tareaje extends CI_Controller {
     }
 
     public function tablaTareajeEdicion() {
-        
+
         $myDateTime = DateTime::createFromFormat('d/m/Y', $this->input->post('txtFecha'));
         $fecha = $myDateTime->format('Y-m-d');
         $calle = $this->input->post('calle');
         $horario = $this->input->post('horario');
         $data['TareajeEdicion'] = $this->Tareaje_model->tablaEditarTareaje($fecha, $calle, $horario);
-        $this->load->view('tareaje/tablaEditarTareaje',$data);
+        $this->load->view('tareaje/tablaEditarTareaje', $data);
+    }
+
+    public function editarusuario($iduser) {
+        $data = array('titulo' => 'Editar Usuario Tareaje');
+        $this->load->view('plantilla/header', $data);
+        $id = $this->session->userdata('login');
+        $datos['usuario'] = $this->user_model->datosUser($id);
+        $this->load->view('plantilla/cabecera', $datos);
+        $menu = array('nuevo' => '', 'estacionado' => '', 'deposito' => '', 'culminado' => '', 'tareaje' => 'active');
+        $this->load->view('plantilla/menuizquierda', $menu);
+        $datos['iduser'] = $iduser;
+        $datos['usuarios'] = $this->Tareaje_model->listarUsuarios();
+        $datos['usuario'] = $this->Tareaje_model->usuarioParquedor($iduser);
+        $this->load->view('tareaje/editarUsuario', $datos);
+        $this->load->view('plantilla/piedePagina');
+        //$this->load->view('plantilla/menuderecha');
+        $this->load->view('plantilla/footer');
+    }
+
+    public function actualizar() {
+        $id = $this->input->post('id');
+        $user = $this->input->post('usuario');
+        $datos['usuario'] = $this->Tareaje_model->updateParqueador($id, $user);
+        header("Location:" . base_url() . 'tareaje/editarTareaje');
     }
 
 }

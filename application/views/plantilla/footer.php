@@ -20,10 +20,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>recursos/plugins/daterangepicker/daterangepicker.js"></script>
 
-<!-- DataTables -->
-<script src="<?php echo base_url(); ?>recursos/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>recursos/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>recursos/plugins/datatables/dataTables.bootstrap.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url(); ?>recursos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- sweetalert -->

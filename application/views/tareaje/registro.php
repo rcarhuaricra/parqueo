@@ -16,7 +16,7 @@
                             Registrar Horarios de Parqueadores:
                         </h3>
                         <h3 class="box-title pull-right"> 
-                            <strong><?php echo HORA_ACTUAL; ?></strong> <a href="<?php echo base_url();?>tareaje/editarTareaje" class="btn btn-app bg-yellow"><span class="fa fa-edit"></span> Editar Tareaje</a>
+                            <strong><?php echo HORA_ACTUAL; ?></strong> <a href="<?php echo base_url(); ?>tareaje/editarTareaje" class="btn btn-app bg-yellow"><span class="fa fa-edit"></span> Editar Tareaje</a>
                         </h3>
                     </div>
                     <!-- /.box-header -->
@@ -29,7 +29,7 @@
                                         <select class="form-control" style="text-transform:uppercase;"  name="mes" id="mes" required>
                                             <?php
                                             foreach ($meses as $clave => $valor) {
-                                                IF ($clave > MES_ACTUAL-1) {
+                                                IF ($clave > MES_ACTUAL - 1) {
                                                     echo "<option value='$clave'>$valor</option>";
                                                 }
                                             }
@@ -72,7 +72,7 @@
         var mm = hoy.getMonth() + 1; //hoy es 0!        
         if ($("#horario").val() === '0') {
             swal({title: "Alto!", text: "Seleccione un Horario valido", timer: 2500});
-            
+
             $("#horario").focus();
             $("#TablaTareaje").html('');
             correcto = false;
@@ -90,6 +90,7 @@
                 url: '<?php echo base_url(); ?>tareaje/tablaTareaje',
                 data: $('#datosTareaje').serialize(),
                 success: function (response) {
+                    
                     console.log(response);
                     $("#TablaTareaje").html(response);
                 }

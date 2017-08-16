@@ -72,7 +72,6 @@ class Login extends CI_Controller {
         $email = strtoupper($this->input->post('email'));
         $pass = strtoupper($this->input->post('psw'));
         $rol = $this->user_model->validaRol($email, $pass);
-
         if ($rol == ADMINISTRADOR) {
             return TRUE;
         } else {
