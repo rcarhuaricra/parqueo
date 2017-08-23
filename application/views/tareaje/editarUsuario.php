@@ -30,7 +30,7 @@
                         <label for="inputPassword3" class="col-sm-2 control-label">Sereno A asignar</label>
 
                         <div class="col-sm-10">
-                            <select  name="usuario" id="usuario" class="form-control select" style="min-width: 250px" required="">
+                            <select  name="usuario" id="usuario" class="form-control select selectBuscar" style="min-width: 250px" required="">
                                 <?php
                                 foreach ($usuarios as $value) {
                                     if ($value->iduser == $usuario->iduser) {

@@ -13,6 +13,7 @@ class Tareaje extends CI_Controller {
     }
 
     public function index() {
+
         $data = array('titulo' => 'Tareaje');
         $this->load->view('plantilla/header', $data);
         $id = $this->session->userdata('login');
@@ -24,7 +25,13 @@ class Tareaje extends CI_Controller {
         $datos['via'] = $this->user_model->datosVias();
         $datos['BuscaParquedor'] = $this->Tareaje_model->BuscaParquedor();
         $datos['Buscaturno'] = $this->Tareaje_model->Buscaturno();
-        $this->load->view('tareaje/registro', $datos);
+
+        if ($_SESSION['idrol'] == ADMINISTRADOR) {
+            $this->load->view('tareaje/registro', $datos);
+        }
+        if ($_SESSION['idrol'] == PARQUEADOR) {
+            $this->load->view('usuario/acceso', $datos);
+        }
         $this->load->view('plantilla/piedePagina');
         //$this->load->view('plantilla/menuderecha');
         $this->load->view('plantilla/footer');

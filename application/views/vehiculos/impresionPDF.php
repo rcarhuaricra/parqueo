@@ -11,7 +11,7 @@
             }
 
             @page {
-                margin: 15px;
+                margin: 16px;
             }
 
         </style>
@@ -20,8 +20,7 @@
     </head>
     <body >
         <div>
-            <p></p>
-            <p></p>
+          
             <table width=250 border="0" style="margin: 0 auto;">
                 <thead>
                     <tr>
@@ -35,15 +34,7 @@
                 </thead>
                 <tbody>
                    
-                    <tr>
-                        <td> <p> </p></br></td>
-                    </tr>
-                    <tr>
-                        <td> <p> </p></br></td>
-                    </tr>
-                    <tr>
-                        <td> <p> </p></br></td>
-                    </tr>
+                  
                     <tr>
                         <td colspan="4" class="subtitulo"> 
                             <strong>Placa: </strong>
@@ -74,7 +65,7 @@
                             <strong>Hora TMP: </strong>
                         </td>
                         <td colspan="16" class="dato"> 
-                            <?php echo $ticket->tiempoparqueo; ?> min
+                            <?php echo $ticket->tiempoparqueo; ?> Horas
                         </td>
                     </tr>
                     <tr>
@@ -89,8 +80,14 @@
                     <tr>
                         <td colspan="20">
                             <p>TMP(tiempo maximo de permanencia)</p>
-                            <p style="font-size: 0.8em; text-align: justify">Cuenta con 15 min de tolerancia, según Ordenanza Municipal 
+                            <p style="font-size: 0.8em; text-align: justify">Cuenta con 15 minutos de tolerancia, según Ordenanza Municipal 
                                 Nº 448-MSI y Decreto de Alcaldía Nº 008-2017-MSI que regula el uso y tiempo de los espacios de estacionamiento público.</p>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="20">
+                    <?php echo "<img src='$qr' width='115' />";?>
                         </td>
                     </tr>
                 </tbody>

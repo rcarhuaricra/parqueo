@@ -1,7 +1,7 @@
 <?php
 
 $config = array(
-    'login/verificarLogin' => array(
+    'login/verificarlogin' => array(
         array(
             'field' => 'email',
             'label' => 'E-mail',

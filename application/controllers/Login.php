@@ -21,8 +21,11 @@ class Login extends CI_Controller {
         $this->load->view('/plantilla/footer');
     }
 
-    public function verificarLogin() {
+    public function verificarlogin() {
         $this->form_validation->set_error_delimiters('<div class="text-right panel-body"><spam class="text-danger ">', '</spam></div>');
+        $this->form_validation->set_rules('email', 'E-mail', 'callback_verificarEmailLogin');
+        $this->form_validation->set_rules('psw', 'Password', 'callback_verificarPassLoging');
+        $this->form_validation->set_rules('acceso', 'acceso', 'callback_verificarTareaje');
         if ($this->form_validation->run() === FALSE) {
             $data = array('titulo' => 'Inicio de Sesión');
             $this->load->view('/plantilla/header', $data);
@@ -77,7 +80,7 @@ class Login extends CI_Controller {
         } else {
             $result = $this->user_model->validaHorario($email, $pass);
             if ($result == FALSE) {
-                $this->form_validation->set_message('verificarTareaje', "El Usuario no tiene Acceso Ens estos Momentos");
+                $this->form_validation->set_message('verificarTareaje', "El Usuario no tiene Acceso En estos Momentos");
                 return FALSE;
             } else {
                 return TRUE;               

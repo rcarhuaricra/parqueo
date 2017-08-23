@@ -56,14 +56,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="user user-menu hidden-lg">
-                            <a >
-                                <span class="fa-stack fa-1x" >
-                                    <i class="fa fa-circle fa-stack-2x text-blue "></i>
-                                    <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </nav>

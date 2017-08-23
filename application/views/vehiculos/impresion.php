@@ -74,6 +74,11 @@
                             Nº 448-MSI y Decreto de Alcaldía Nº 008-2017-MSI que regula el uso y tiempo de los espacios de estacionamiento público.</p>
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="20">
+                        <?php echo $qr ;?>
+                    </td>
+                </tr>
             </tbody>
 
         </table>

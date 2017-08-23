@@ -17,9 +17,15 @@ class Servicio extends CI_Controller {
     }
 
     public function updateEstados($id, $user, $estado) {
-        
+
         $dato = $this->servicio_model->updateEstadoModel($id, $user, $estado);
         echo json_encode($dato);
+    }
+
+    public function mitiempo($nuevoId = "") {
+
+        $dato = $this->servicio_model->MostrarEstado($nuevoId);
+        echo json_encode($nuevoId);
     }
 
 }

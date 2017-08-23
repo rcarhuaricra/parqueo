@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("select").select2();
+    $(".selectBuscar").select2();
 });
 
 /* VALIDAR SOLO NUMEROS  */

@@ -5,7 +5,7 @@
             Velículos 
             <small> remolcados por grúa</small>
         </h1>
-       
+
     </section>
 
     <!-- Main content -->
@@ -24,26 +24,23 @@
                                 <tr>
                                     <th>Placa</th>
                                     <th>Inicio</th>
-                                    <th>Fin</th>
-                                    <th>Tiempo</th>
-                                    
+                                    <th>Culmino</th>
+                                    <th>Tiempo Estacionado</th>
+                                    <th>Estado</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                  foreach ($vehiculos as $fila) {
+                                foreach ($vehiculos as $fila) {
 
-                                    if ($fila->diferencia < '00:00:00') {
-                                        echo "<tr class='danger odd'>";
-                                    } else {
-                                        echo "<tr class='success odd'>";
-                                    }
+                                    echo "<tr>";
                                     echo "<td>$fila->placa</td>";
                                     echo "<td>$fila->horainicio</td>";
-                                    echo "<td>$fila->horafinal</td>";
-                                    echo "<td>$fila->diferencia</td>";
-                                    echo "<td>";
-                                   
+                                    echo "<td>$fila->fecmod</td>";
+                                    echo "<td>$fila->tiempoParqueado</td>";
+                                    echo "<td>$fila->txtestado</td>";
+
                                     echo "</tr>";
                                 }
                                 ?>

@@ -28,7 +28,7 @@ echo "Hubo {$numero} días en " . $meses[$mes] . " del " . AÑO_ACTUAL;
                 echo "<td><input type='hidden' name='cuadra[]' value='$value->id_cuadras'>" . $value->cuadra . "</td>";
                 echo "<td>";
                 ?>
-            <select  name="usuario[]" id="usuario" class="form-control select" style="min-width: 250px" required="">
+            <select  name="usuario[]" id="usuario" class="select selectBuscar" style="min-width: 250px" required="">
                 <option value="">[selecciones Usuario]</option>
                 <?php
                 foreach ($usuarios as $usuario) {
@@ -48,18 +48,17 @@ echo "Hubo {$numero} días en " . $meses[$mes] . " del " . AÑO_ACTUAL;
     </div>
 </form>
 <script>
-
+    $(".selectBuscar").select2();
     $('#guardarTareaje').bind('submit', function () {
         event.preventDefault();
         $.ajax({
             type: 'post',
             url: '<?php echo base_url(); ?>tareaje/guardarTareaje',
             data: $('#guardarTareaje').serialize(),
-           
             success: function (response) {
 
                 if (response > 0) {
-                    
+
                     swal({title: "Exito!", text: "El tareaje se Agrego Correctamente", timer: 2500});
                     $("#TablaTareaje").html('');
                 } else {

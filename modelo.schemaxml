@@ -112,7 +112,7 @@
   `iduser_parqueador` int(5) DEFAULT NULL,
   `id_turno` int(11) DEFAULT NULL,
   `fecha_tarea` date DEFAULT NULL,
-  `fecreg` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecreg` datetime DEFAULT NULL,
   `userreg` varchar(50) DEFAULT NULL,
   `fecmod` datetime DEFAULT NULL,
   `usermod` varchar(50) DEFAULT NULL,

@@ -55,6 +55,9 @@
         <script src="<?php echo base_url(); ?>recursos/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="<?php echo base_url(); ?>recursos/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>recursos/plugins/datatables/dataTables.bootstrap.js"></script>
+        
+        <script src="<?php echo base_url(); ?>recursos/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+        
         <script src="<?php echo base_url(); ?>recursos/plugins/select2/select2.full.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>recursos/recursosmsi/script.js" type="text/javascript"></script>
     </head>

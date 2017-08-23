@@ -9,7 +9,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">Inicio de Sesión</p>
 
-            <form action="<?php echo base_url(); ?>login/verificarLogin" method="post">
+            <form action="<?php echo base_url(); ?>login/verificarlogin" method="post">
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" placeholder="Email" id="email" name="email"  value="<?php echo set_value('email'); ?>"/>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

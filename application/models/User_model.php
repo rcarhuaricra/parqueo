@@ -40,12 +40,10 @@ class User_model extends CI_Model {
                 'txtrol' => $consulta1->txtrol,
                 'idtareaje' => $consulta1->id_tareaje,
                 'codvia' => $consulta1->codvia,
-                'calle' => $consulta1->tipoVia." ".$consulta1->nombrevia." Cuadra ".$consulta1->cuadra
-                
+                'calle' => $consulta1->tipoVia . " " . $consulta1->nombrevia . " Cuadra " . $consulta1->cuadra
             );
             $this->session->set_userdata($data);
         }
-        
     }
 
     public function validaEmail($email) {
@@ -113,6 +111,12 @@ class User_model extends CI_Model {
 
     public function datosVias() {
         $sql = 'SELECT * FROM `mpcalle` WHERE flgestado="1"';
+        return $this->db->query($sql);
+    }
+
+    public function listarCallesTareajes() {
+        $iduser = $_SESSION["iduser"];
+        $sql = "CALL selectTareajes($iduser)";
         return $this->db->query($sql);
     }
 
